@@ -59,31 +59,33 @@ public class Profile {
 
     //display profile
     public void displayProfile(){
+        double tdee = (int) calcuTDEE();
+        double tdeeperweek = (int) calcuTDEEperWeek();
+        double bmr = (int) calcuBMR();
+        double bmi = (int) calcuBMI();
+        String weightCategory = weightCategory();
         System.out.println("Profile");
         System.out.println("Name: " + name);
         System.out.println("Gender: " + gender);
         System.out.println("Activity Level: " + activity);
         System.out.println("Goal: " + goal);
         System.out.println("Age: " + age);
-        System.out.println("Weight: " + weight + " kg");
         System.out.println("Height: " + height + " cm");
-    }
-
-    public void displayCalories(){
-        double bmr = (int) calcuBMR();
-        double tdee = (int) calcuTDEE();
-        double tdeeperweek = (int) calcuTDEEperWeek();
-        double bmi = (int) calcuBMI();
-        String weightCategory = weightCategory();
+        System.out.println("Weight: " + weight + " kg");
+        System.out.println("Weight Category: " + weightCategory);
         System.out.println("Total Daily Energy Expenditure(TDEE): " + tdee + " calories per day.");
         System.out.println("Total Daily Energy Expenditure(TDEE): " + tdeeperweek + " calories per week");
         System.out.println("Basal Metabolic Rate(BMR): " + bmr + " calories per day.");
         System.out.println("Body Mass Index(BMI): " + bmi + "kg/m^2");
-        System.out.println("Weight Category: " + weightCategory);
+    }
 
-        System.out.println("\nTDEE shows your Maintenance Calories");
-        System.out.println("BMR shows minimum energy required by major body organs to function even while you are at rest.");
-        System.out.println("BMI is a measure of your body's weight.");
+    public void displayCalories(){
+        double tdee = (int) calcuTDEE();
+        System.out.println(tdee + " goal for today");
+
+//        System.out.println("\nTDEE shows your Maintenance Calories");
+//        System.out.println("BMR shows minimum energy required by major body organs to function even while you are at rest.");
+//        System.out.println("BMI is a measure of your body's weight.");
     }
 
     public String weightCategory() {
