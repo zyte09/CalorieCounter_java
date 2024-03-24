@@ -12,6 +12,18 @@ public class Profile {
         this.height = height;
     }
 
+    //display profile
+    public void displayProfile(){
+        System.out.println("Profile");
+        System.out.println("Name: " + name);
+        System.out.println("Gender: " + gender);
+        System.out.println("Activity Level: " + activity);
+        System.out.println("Goal: " + goal);
+        System.out.println("Age: " + age);
+        System.out.println("Weight: " + weight + " kg");
+        System.out.println("Height: " + height + " cm");
+    }
+
     //get and set name
     public String getName() {
         return name;
