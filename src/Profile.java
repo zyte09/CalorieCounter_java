@@ -11,6 +11,51 @@ public class Profile {
         this.weight = weight;
         this.height = height;
     }
+    public double calcuBMR() {  //Mifflin-St Jeor formula (most accurate)
+        double bmr = (10 * weight) + (6.25 * height) - (5 * age);
+        if (gender.equalsIgnoreCase("M")){
+            bmr += 5; //add 5 for male
+        } else if (gender.equalsIgnoreCase("F")) {
+            bmr -= 151; //minus 151 for female
+        } else {
+            System.out.print("Invalid gender provided");
+            return 0;
+        }
+        return bmr;
+    }
+
+    public double calcuTDEE() {
+        double bmr = calcuBMR();
+        double tdee = 0;
+        switch(activity) {
+            case "Sedentary (Office Job)":
+                tdee = bmr * 1.2;
+                break;
+            case "Light Exercise (1-2 days/week)":
+                tdee = bmr * 1.375;
+                break;
+            case "Moderate Exercise (3-5 days/week)":
+                tdee = bmr * 1.55;
+                break;
+            case "Heavy Exercise (6-7 days/week)":
+                tdee = bmr * 1.725;
+                break;
+            case "Athlete Exercise (2x per day)":
+                tdee = bmr * 1.9;
+                break;
+            default:
+                System.out.println("Invalid activity level provided");
+        }
+        return tdee;
+    }
+    public double calcuTDEEperWeek(){
+        return calcuTDEE() * 7;
+    }
+
+    public double calcuBMI(){
+        double heightMeters = height / 100.0; //convert height cm to meters
+        return weight / (heightMeters * heightMeters);
+    }
 
     //display profile
     public void displayProfile(){
@@ -23,6 +68,39 @@ public class Profile {
         System.out.println("Weight: " + weight + " kg");
         System.out.println("Height: " + height + " cm");
     }
+
+    public void displayCalories(){
+        double bmr = (int) calcuBMR();
+        double tdee = (int) calcuTDEE();
+        double tdeeperweek = (int) calcuTDEEperWeek();
+        double bmi = (int) calcuBMI();
+        String weightCategory = weightCategory();
+        System.out.println("Total Daily Energy Expenditure(TDEE): " + tdee + " calories per day.");
+        System.out.println("Total Daily Energy Expenditure(TDEE): " + tdeeperweek + " calories per week");
+        System.out.println("Basal Metabolic Rate(BMR): " + bmr + " calories per day.");
+        System.out.println("Body Mass Index(BMI): " + bmi + "kg/m^2");
+        System.out.println("Weight Category: " + weightCategory);
+
+        System.out.println("\nTDEE shows your Maintenance Calories");
+        System.out.println("BMR shows minimum energy required by major body organs to function even while you are at rest.");
+        System.out.println("BMI is a measure of your body's weight.");
+    }
+
+    public String weightCategory() {
+        double bmi = calcuBMI();
+        if (bmi < 18.5) {
+            return "Underweight";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            return "Healthy weight";
+        } else if (bmi >= 25.0 && bmi <= 29.9) {
+            return "Overweight";
+        } else if (bmi >= 30.0 && bmi <= 39.9) {
+            return "Obesity";
+        } else {
+            return "Extreme obesity";
+        }
+    }
+
 
     //get and set name
     public String getName() {

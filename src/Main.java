@@ -74,6 +74,10 @@ public class Main {
         }
 
         Profile user = new Profile(name, gender, activityLevel, goal, age, weight, height);
+        home home = new home();
+        mealTracker mealTracker = new mealTracker();
+        program program = new program();
+        more more = new more();
         //menu
         while (true) {
             displayMenu();
@@ -82,32 +86,28 @@ public class Main {
             input.nextLine();
             switch(option) {
                 case 1:
-                    MainHub mainHub = new MainHub();
-                    mainHub.displaymainHub();
+                    home.displayHome(user);
                     break;
                 case 2:
-                    FoodHub foodHub = new FoodHub();
-                    foodHub.displayfoodHub();
+                    mealTracker.displaymealTracker();
                     break;
                 case 3:
-                    WorkoutHub workoutHub = new WorkoutHub();
-                    workoutHub.displayworkoutHub();
+                    program.displayProgram();
                     break;
                 case 4:
-                    More more = new More();
-                    more.displaymore();
+                    more.displayMore(user);
                     break;
                 case 5:
                     System.out.println("Exiting...");
                     input.close();
-                    break;
+                    return;
                 default:
                     System.out.println("Please enter a valid choice");
             }
         }
     }
     public static void displayMenu() {
-        System.out.println("1. Main Hub");
+        System.out.println("\n1. Main Hub");
         System.out.println("2. Food Hub");
         System.out.println("3. Workout");
         System.out.println("4. More");
