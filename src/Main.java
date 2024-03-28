@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome to the Calorie Counter App");
+        System.out.println("Welcome to Macro Lite, the Calorie Counter App");
         System.out.println("Please enter your Profile Information:");
         //user input profile info
         System.out.println("Enter your name: ");
