@@ -46,6 +46,19 @@ public class Profile {
             default:
                 System.out.println("Invalid activity level provided");
         }
+        switch(goal) {
+            case "Loss weight (Cutting)":
+                tdee -= 500;
+                break;
+            case "Maintain weight (Maintenance)":
+                // No change to TDEE
+                break;
+            case "Gain muscle (Bulking)":
+                tdee += 500;
+                break;
+            default:
+                System.out.println("Invalid goal provided");
+        }
         return tdee;
     }
     public double calcuTDEEperWeek(){
