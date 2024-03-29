@@ -151,7 +151,7 @@ public class Main {
         }
     }
     public static void displayMenu() {
-        System.out.println("1. Main");
+        System.out.println("\n1. Main");
         System.out.println("2. Meal Tracker");
         System.out.println("3. Workout");
         System.out.println("4. More");

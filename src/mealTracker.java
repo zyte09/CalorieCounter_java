@@ -101,9 +101,9 @@ public class mealTracker {
         } else {
             System.out.println("Food not found in database.");
         }
-
+        String key = mealName + " " + searchName; // para di ma overwritten foods
         Meal meal = new Meal(mealName, searchName, servingSize);
-        meals.put(mealName, meal);
+        meals.put(key, meal);
     }
 
 
