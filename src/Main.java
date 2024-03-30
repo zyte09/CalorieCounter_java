@@ -66,14 +66,26 @@ public class Main {
         }
         input.nextLine();
 
-        System.out.println("Activity Level");
+        System.out.println("\nActivity Level");
         System.out.println("1. Sedentary (Office Job)");
         System.out.println("2. Light Exercise (1-2 days/week)");
         System.out.println("3. Moderate Exercise (3-5 days/week)");
         System.out.println("4. Heavy Exercise (6-7 days/week)");
         System.out.println("5. Athlete Exercise (2x per day)");
-        int activityChoice = input.nextInt();
-        input.nextLine();
+        System.out.print("Input your choice (1-5): ");
+        int activityChoice = 0;
+        while (activityChoice < 1 || activityChoice > 5) {
+            if (input.hasNextInt()) {
+                activityChoice = input.nextInt();
+                if (activityChoice < 1 || activityChoice > 5) {
+                    System.out.print("Please enter a valid choice (1-5): ");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
+
         String activityLevel = "";
         switch (activityChoice) {
             case 1:
@@ -92,16 +104,29 @@ public class Main {
                 activityLevel = "Athlete Exercise (2x per day)";
                 break;
             default:
-                System.out.println("Please enter a valid choice");
+                System.out.println("Unexpected error occurred.");
         }
 
-        System.out.println("Goal");
+
+        System.out.println("\nGoal");
         System.out.println("If you are a beginner, go Maintenance first");
         System.out.println("1. Loss weight (Cutting)");
         System.out.println("2. Maintain weight (Maintenance)");
         System.out.println("3. Gain muscle (Bulking)");
-        int goalChoice = input.nextInt();
-        input.nextLine();
+        System.out.print("Input your choice (1-3): ");
+        int goalChoice = 0;
+        while (goalChoice < 1 || goalChoice > 3) {
+            if (input.hasNextInt()) {
+                goalChoice = input.nextInt();
+                if (goalChoice < 1 || goalChoice > 3) {
+                    System.out.print("Please enter a valid choice (1-3): ");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
+
         String goal = "";
         switch (goalChoice) {
             case 1:
@@ -114,8 +139,9 @@ public class Main {
                 goal = "Gain muscle (Bulking)";
                 break;
             default:
-                System.out.println("Please enter a valid choice");
+                System.out.println("Unexpected error occurred.");
         }
+
 
         Profile user = new Profile(name, gender, activityLevel, goal, age, weight, height);
         home home = new home();
@@ -125,7 +151,7 @@ public class Main {
         //menu
         while (true) {
             displayMenu();
-            System.out.println("Please select an option: ");
+            System.out.print("Please select an option (1-5): ");
             int option = input.nextInt();
             input.nextLine();
             switch(option) {

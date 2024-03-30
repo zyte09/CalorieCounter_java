@@ -13,7 +13,7 @@ public class mealTracker {
             System.out.println("3. Delete a meal");
             System.out.println("4. Update a meal");
             System.out.println("5. Exit");
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice (1-5): ");
             Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
             switch (choice) {
@@ -146,7 +146,7 @@ public class mealTracker {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the name of the meal to update: ");
         String mealName = input.nextLine();
-        System.out.println("Enter the new serving size: ");
+        System.out.println("Enter the new serving size (in grams): ");
         if(!input.hasNextDouble()){
             System.out.println("Invalid input. Please enter a number.");
             input.next();
