@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.text.DecimalFormat;
@@ -5,6 +7,7 @@ import java.text.DecimalFormat;
 public class mealTracker {
     HashMap<String, Meal> meals = new HashMap<>();
     FoodDatabase foodDatabase = new FoodDatabase();
+    int mealCounter = 0;
     public void displaymealTracker() {
         Scanner input = new Scanner(System.in);
         int choice = 0;
@@ -108,7 +111,8 @@ public class mealTracker {
         }
         String key = mealName + " " + searchName; // para di ma overwritten foods
         if (meals.containsKey(key)) {
-            key += " " + System.currentTimeMillis(); // add timestamp to key to avoid overwriting existing meal
+            key += " " + mealCounter++; // add timestamp to key to avoid overwriting existing meal
+
         }
         Meal meal = new Meal(mealName, searchName, servingSize);
         meals.put(key, meal);
@@ -241,36 +245,33 @@ public class mealTracker {
 
         System.out.println("You selected: " + mealName);
         System.out.println("Meal in " + mealName + " to update: ");
-        boolean mealFound = false;
+        List<String> mealKeys = new ArrayList<>();
+        int i = 1;
         for (String key : meals.keySet()) {
             if (key.startsWith(mealName)) {
-                System.out.println(key.substring(mealName.length() + 1)); // +1 to remove the space
-                mealFound = true;
+                Meal meal = meals.get(key);
+                System.out.println(i + ". " + key.substring(mealName.length() + 1) + " " + meal.servingSize + " gram/s"); // +1 to remove the space and display serving size
+                mealKeys.add(key);
+                i++;
             }
         }
-        if (!mealFound) {
-            System.out.println("No meals found in " + mealName);
-            return;
-        }
 
-        System.out.println("Enter the name of the meal to update from " + mealName + ":");
-        String foodName = input.nextLine().toLowerCase();
-
-        String key = mealName + " " + foodName;
-        if(meals.containsKey(key)) {
-            System.out.println("Enter the new serving size (in grams): ");
-            if(!input.hasNextDouble()) {
+        System.out.println("Enter the number of the meal to update from " + mealName + ":");
+        int mealNumber = input.nextInt() - 1; // -1 to get the correct index and to start at 0
+        if (mealNumber >= 0 && mealNumber < mealKeys.size()){
+            String key = mealKeys.get(mealNumber);
+            System.out.print("Enter the new serving size (in grams): ");
+            if(!input.hasNextDouble()){
                 System.out.println("Invalid input. Please enter a number.");
                 input.next();
                 return;
             }
-            double newservingSize = input.nextDouble();
-            input.nextLine();
+            double newServingSize = input.nextDouble();
             Meal meal = meals.get(key);
-            meal.servingSize = newservingSize;
-            System.out.println("Meal updated.");
+            meal.servingSize = newServingSize;
+            System.out.println("Meal updated");
         } else {
-            System.out.println("Meal not found.");
+            System.out.println("Invalid meal number.");
         }
     }
 }
