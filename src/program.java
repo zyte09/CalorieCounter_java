@@ -27,7 +27,6 @@ public class program {
             default:
                 System.out.println("Please enter a valid choice");
         }
-        Scanner input = new Scanner(System.in);
         System.out.println("How many days split?");
         System.out.println("1. 1 day split");
         System.out.println("2. 2 day split");
@@ -127,6 +126,13 @@ public class program {
     }
 
     public void sevenDaySplit() {
+    }
+
+    public void addWorkoutProgram(){
+
+    }
+    public void displayWorkoutProgram(){
+
     }
 
 }
