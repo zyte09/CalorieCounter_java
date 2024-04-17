@@ -150,7 +150,7 @@ public class mealTracker {
         System.out.println("Enter the number of the meal to update from " + mealName + ":");
         int mealNumber = input.nextInt() - 1; // -1 to get the correct index and to start at 0
         if (mealNumber >= 0 && mealNumber < mealKeys.size()){
-            String key = mealKeys.get(mealNumber);
+            String oldkey = mealKeys.get(mealNumber);
             System.out.print("Enter the new serving size (in grams): ");
             if(!input.hasNextDouble()){
                 System.out.println("Invalid input. Please enter a number.");
@@ -158,17 +158,12 @@ public class mealTracker {
                 return;
             }
             double newServingSize = input.nextDouble();
-            Meal meal = meals.get(key);
-            MealInfo originalMealInfo = meal.getMealInfo();
-            MealInfo scaledMealInfo = new MealInfo(
-                    originalMealInfo.getCalories(),
-                    originalMealInfo.getCarbs(),
-                    originalMealInfo.getFats(),
-                    originalMealInfo.getProtein()
-            );
-            scaledMealInfo.getScaledMealInfo(newServingSize);
+            Meal meal = meals.get(oldkey);
             meal.servingSize = newServingSize;
-            meal.setMealInfo(scaledMealInfo); // update mealinfo with new values
+            meal.setMealInfo(foodDatabase.getMealInfo(meal.getFoodName()).getScaledMealInfo(newServingSize)); // update mealinfo with new values
+            meals.remove(oldkey); // remove old meal
+            String newKey = mealName + " " + meal.getFoodName() + " " + newServingSize; // new values with updated values
+            meals.put(newKey, meal); // add new meal
             System.out.println("Meal updated");
         } else {
             System.out.println("Invalid meal number.");
