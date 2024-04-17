@@ -1,6 +1,6 @@
 public class Meal {
-    String mealName;
-    String foodName;
+    private final String mealName;
+    private final String foodName;
     double servingSize;
     MealInfo mealInfo; // store the nutritional information of the meal
 

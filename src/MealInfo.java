@@ -13,7 +13,12 @@ public class MealInfo {
     }
     public MealInfo scaleNutritionalValues(double newServingSize) {
         double scale = newServingSize / 100.0;
-        return new MealInfo(originalCalories * scale, originalCarbs * scale, originalFats * scale, originalProtein * scale);
+        return new MealInfo(
+                originalCalories * scale,
+                originalCarbs * scale,
+                originalFats * scale,
+                originalProtein * scale
+        );
     }
 
     public double getCalories() {
