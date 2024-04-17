@@ -11,7 +11,8 @@ public class FoodDatabase {
     }
 
     public MealInfo getMealInfo(String mealName) {
-        return mealInfoMap.get(mealName.toLowerCase());
+        MealInfo originalMealInfo = mealInfoMap.get(mealName.toLowerCase());
+        return new MealInfo(originalMealInfo.getCalories(), originalMealInfo.getCarbs(), originalMealInfo.getFats(), originalMealInfo.getProtein());
     }
 
     public boolean hasMealInfo(String mealName) {

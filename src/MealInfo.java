@@ -1,36 +1,31 @@
 public class MealInfo {
-    double calories;
-    double carbs;
-    double fats;
-    double protein;
-    double servingSize;
+    private final double originalCalories;
+    private final double originalCarbs;
+    private final double originalFats;
+    private final double originalProtein;
 
     //constructor
     public MealInfo(double calories, double carbs, double fats, double protein) {
-        this.calories = calories;
-        this.carbs = carbs;
-        this.fats = fats;
-        this.protein = protein;
+        this.originalCalories = calories;
+        this.originalCarbs = carbs;
+        this.originalFats = fats;
+        this.originalProtein = protein;
     }
-    public void scaleNutritionalValues(double newServingSize) {
+    public MealInfo scaleNutritionalValues(double newServingSize) {
         double scale = newServingSize / 100.0;
-        this.calories *= scale;
-        this.carbs *= scale;
-        this.fats *= scale;
-        this.protein *= scale;
-        this.servingSize = 100; // start at 100 gram
+        return new MealInfo(originalCalories * scale, originalCarbs * scale, originalFats * scale, originalProtein * scale);
     }
 
     public double getCalories() {
-        return calories;
+        return originalCalories;
     }
     public double getCarbs() {
-        return carbs;
+        return originalCarbs;
     }
     public double getFats() {
-        return fats;
+        return originalFats;
     }
     public double getProtein() {
-        return protein;
+        return originalProtein;
     }
 }
