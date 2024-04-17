@@ -168,7 +168,7 @@ public class mealTracker {
             );
             scaledMealInfo.scaleNutritionalValues(newServingSize);
             meal.servingSize = newServingSize;
-            meal.mealInfo = scaledMealInfo; // update mealinfo with new values
+            meal.setMealInfo(scaledMealInfo); // update mealinfo with new values
             System.out.println("Meal updated");
         } else {
             System.out.println("Invalid meal number.");

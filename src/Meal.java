@@ -16,7 +16,7 @@ public class Meal {
     }
 
     public void setMealInfo(MealInfo mealInfo) {
-        this.mealInfo = new MealInfo(mealInfo.getCalories(), mealInfo.getCarbs(), mealInfo.getFats(), mealInfo.getProtein()); // create a new MealInfo object
+        this.mealInfo = mealInfo;
     }
 
     public double getServingSize() {
