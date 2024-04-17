@@ -3,6 +3,7 @@ public class MealInfo {
     double carbs;
     double fats;
     double protein;
+    double servingSize;
 
     //constructor
     public MealInfo(double calories, double carbs, double fats, double protein) {
@@ -11,12 +12,13 @@ public class MealInfo {
         this.fats = fats;
         this.protein = protein;
     }
-    public void scaleNutritionalValues(double servingSize) {
-        double scale = servingSize / 100.0;
+    public void scaleNutritionalValues(double newServingSize) {
+        double scale = newServingSize / 100.0;
         this.calories *= scale;
         this.carbs *= scale;
         this.fats *= scale;
         this.protein *= scale;
+        this.servingSize = 100; // start at 100 gram
     }
 
     public double getCalories() {

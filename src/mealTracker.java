@@ -7,9 +7,8 @@ import java.text.DecimalFormat;
 public class mealTracker {
     HashMap<String, Meal> meals = new HashMap<>();
     FoodDatabase foodDatabase = new FoodDatabase();
-    int mealCounter = 0;
+    Scanner input = new Scanner(System.in); // scanner global
     public void displaymealTracker() {
-        Scanner input = new Scanner(System.in);
         int choice = 0;
         while (choice != 5) {
             System.out.println("\nWelcome to the meal tracker");
@@ -49,44 +48,7 @@ public class mealTracker {
     }
 
     public void addMeal() {
-        Scanner input = new Scanner(System.in);
-        int mealType = 0;
-        String mealName = "";
-        while (mealType < 1 || mealType > 4) {
-            System.out.println("Select a meal type:");
-            System.out.println("1. Breakfast");
-            System.out.println("2. Lunch");
-            System.out.println("3. Dinner");
-            System.out.println("4. Snack");
-            System.out.println("Enter your choice: ");
-            if (input.hasNextInt()) {
-                mealType = input.nextInt();
-                if (mealType < 1 || mealType > 4) {
-                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-                } else {
-                    switch (mealType) {
-                        case 1:
-                            mealName = "Breakfast";
-                            break;
-                        case 2:
-                            mealName = "Lunch";
-                            break;
-                        case 3:
-                            mealName = "Dinner";
-                            break;
-                        case 4:
-                            mealName = "Snack";
-                            break;
-                    }
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
-            }
-        }
-        input.nextLine();
-
-        System.out.println("You selected: " + mealName);
+        String mealName = selectMealType();
         System.out.println("Enter the name of the food to search: ");
         String searchName = input.nextLine().toLowerCase();
         while (!foodDatabase.hasMealInfo(searchName)) {
@@ -95,7 +57,7 @@ public class mealTracker {
             searchName = input.nextLine().toLowerCase();
         }
         System.out.println("Enter the serving size (in grams): ");
-        double servingSize = 0;
+        double servingSize;
         while (!input.hasNextDouble()) {
             System.out.println("Invalid input. Please enter a number.");
             input.next();
@@ -127,58 +89,29 @@ public class mealTracker {
             System.out.println("No meals to display.");
         } else {
             for (Meal meal : meals.values()) {
-                System.out.println("\nMeal Name: " + meal.mealName);
-                System.out.println("Food Name: " + meal.foodName);
-                System.out.println("Serving Size: " + meal.servingSize);
-                MealInfo mealInfo = meal.getMealInfo();
-                System.out.println("Calories: " + df.format(mealInfo.calories));
-                System.out.println("Carbs: " + df.format(mealInfo.carbs));
-                System.out.println("Fats: " + df.format(mealInfo.fats));
-                System.out.println("Protein: " + df.format(mealInfo.protein));
+                MealInfo originalMealInfo = meal.getMealInfo();
+                MealInfo scaledMealInfo = new MealInfo(
+                        originalMealInfo.getCalories(),
+                        originalMealInfo.getCarbs(),
+                        originalMealInfo.getFats(),
+                        originalMealInfo.getProtein()
+                );
+                scaledMealInfo.scaleNutritionalValues(meal.getServingSize());
+                meal.setMealInfo(scaledMealInfo); //update mealInfo with new values
+
+                System.out.println("\nMeal Name: " + meal.getMealName());
+                System.out.println("Food Name: " + meal.getFoodName());
+                System.out.println("Serving Size: " + meal.getServingSize());
+                System.out.println("Calories: " + df.format(meal.getMealInfo().getCalories()));
+                System.out.println("Carbs: " + df.format(meal.getMealInfo().getCarbs()));
+                System.out.println("Fats: " + df.format(meal.getMealInfo().getFats()));
+                System.out.println("Protein: " + df.format(meal.getMealInfo().getProtein()));
             }
         }
     }
 
     public void deleteMeal() {
-        Scanner input = new Scanner(System.in);
-        int mealType = 0;
-        String mealName = "";
-        while (mealType < 1 || mealType > 4) {
-            System.out.println("Select a meal type:");
-            System.out.println("1. Breakfast");
-            System.out.println("2. Lunch");
-            System.out.println("3. Dinner");
-            System.out.println("4. Snack");
-            System.out.println("Enter your choice: ");
-            if (input.hasNextInt()) {
-                mealType = input.nextInt();
-                if (mealType < 1 || mealType > 4) {
-                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-                } else {
-                    switch (mealType) {
-                        case 1:
-                            mealName = "Breakfast";
-                            break;
-                        case 2:
-                            mealName = "Lunch";
-                            break;
-                        case 3:
-                            mealName = "Dinner";
-                            break;
-                        case 4:
-                            mealName = "Snack";
-                            break;
-                    }
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
-            }
-        }
-        input.nextLine();
-
-
-        System.out.println("You selected: " + mealName);
+        String mealName = selectMealType();
         System.out.println("Meal in " + mealName + " to delete: ");
         List<String> mealKeys = new ArrayList<>();
         int i = 1;
@@ -202,50 +135,12 @@ public class mealTracker {
     }
 
     public void updateMeal() {
-        Scanner input = new Scanner(System.in);
-        int mealType = 0;
-        String mealName = "";
-        while (mealType < 1 || mealType > 4) {
-            System.out.println("Select a meal type:");
-            System.out.println("1. Breakfast");
-            System.out.println("2. Lunch");
-            System.out.println("3. Dinner");
-            System.out.println("4. Snack");
-            System.out.println("Enter your choice: ");
-            if (input.hasNextInt()) {
-                mealType = input.nextInt();
-                if (mealType < 1 || mealType > 4) {
-                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-                } else {
-                    switch (mealType) {
-                        case 1:
-                            mealName = "Breakfast";
-                            break;
-                        case 2:
-                            mealName = "Lunch";
-                            break;
-                        case 3:
-                            mealName = "Dinner";
-                            break;
-                        case 4:
-                            mealName = "Snack";
-                            break;
-                    }
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
-            }
-        }
-        input.nextLine();
-
-        System.out.println("You selected: " + mealName);
+        String mealName = selectMealType();
         System.out.println("Meal in " + mealName + " to update: ");
         List<String> mealKeys = new ArrayList<>();
         int i = 1;
         for (String key : meals.keySet()) {
             if (key.startsWith(mealName)) {
-                Meal meal = meals.get(key);
                 System.out.println(i + ". " + key.substring(mealName.length() + 1) + " gram/s"); // +1 to remove the space and display serving size
                 mealKeys.add(key);
                 i++;
@@ -278,5 +173,46 @@ public class mealTracker {
         } else {
             System.out.println("Invalid meal number.");
         }
+    }
+
+    public String selectMealType() {
+    int mealType = 0;
+    String mealName = "";
+    while (mealType < 1 || mealType > 4) {
+        System.out.println("Select a meal type:");
+        System.out.println("1. Breakfast");
+        System.out.println("2. Lunch");
+        System.out.println("3. Dinner");
+        System.out.println("4. Snack");
+        System.out.println("Enter your choice: ");
+        if (input.hasNextInt()) {
+            mealType = input.nextInt();
+            if (mealType < 1 || mealType > 4) {
+                System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            } else {
+                switch (mealType) {
+                    case 1:
+                        mealName = "Breakfast";
+                        break;
+                    case 2:
+                        mealName = "Lunch";
+                        break;
+                    case 3:
+                        mealName = "Dinner";
+                        break;
+                    case 4:
+                        mealName = "Snack";
+                        break;
+                }
+            }
+        } else {
+            System.out.println("Invalid input. Please enter a number.");
+            input.next();
+        }
+    }
+    input.nextLine();
+
+    System.out.println("You selected: " + mealName);
+    return mealName;
     }
 }

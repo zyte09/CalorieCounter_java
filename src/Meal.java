@@ -14,4 +14,17 @@ public class Meal {
 public MealInfo getMealInfo() {
     return mealInfo;
     }
+    public void setMealInfo(MealInfo mealInfo) {
+        this.mealInfo = mealInfo;
+    }
+    public double getServingSize() {
+        return servingSize;
+    }
+    public String getMealName() {
+        return mealName;
+    }
+    public String getFoodName() {
+        return foodName;
+    }
 }
+
