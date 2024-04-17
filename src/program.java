@@ -2,16 +2,16 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 public class program {
-    LinkedList<String> workoutProgram = new LinkedList<String>();
+    LinkedList<String> workoutProgram = new LinkedList<>();
+    private static final Scanner input = new Scanner(System.in);
 
-    public void displayProgram(){
+    public void displayProgram() {
         System.out.println("Workout Program");
         System.out.println("What would you like to do?");
         System.out.println("1. Add a workout program");
         System.out.println("2. Display workout program");
         System.out.println("3. Exit");
         System.out.print("Enter your choice (1-3): ");
-        Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         input.nextLine();
         switch (choice) {
@@ -27,14 +27,18 @@ public class program {
             default:
                 System.out.println("Please enter a valid choice");
         }
+    }
+
+        public void addWorkoutProgram(){
         System.out.println("How many days split?");
-        System.out.println("1. 1 day split");
-        System.out.println("2. 2 day split");
-        System.out.println("3. 3 day split");
-        System.out.println("4. 4 day split");
-        System.out.println("5. 5 day split");
-        System.out.println("6. 6 day split");
-        System.out.println("7. 7 day split");
+        System.out.println("1) 1-day split");
+        System.out.println("2) 2-day split");
+        System.out.println("3) 3-day split");
+        System.out.println("4) 4-day split");
+        System.out.println("5) 5-day split");
+        System.out.println("6) 6-day split");
+        System.out.println("7) 7-day split");
+        System.out.print("Enter your choice: ");
         int daysSplit = input.nextInt();
         input.nextLine();
 
@@ -66,6 +70,15 @@ public class program {
         System.out.println("Workout Program Splits: " + workoutProgram);
     }
 
+    public void displayWorkoutProgram(){
+        if(workoutProgram.isEmpty()){
+            System.out.println("No workout program added yet");
+        } else {
+            System.out.println("Workout Program: " + workoutProgram);
+        }
+
+    }
+
     public void oneDaySplit() {
         System.out.println("Choose a workout program (1-day split)");
         System.out.println("1. Full Body Workout");
@@ -77,7 +90,6 @@ public class program {
         System.out.println("7. Legs Workout");
         System.out.println("8. Arms Workout");
         System.out.print("Enter your choice: ");
-        Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         input.nextLine();
         switch(choice) {
@@ -127,12 +139,4 @@ public class program {
 
     public void sevenDaySplit() {
     }
-
-    public void addWorkoutProgram(){
-
-    }
-    public void displayWorkoutProgram(){
-
-    }
-
 }
