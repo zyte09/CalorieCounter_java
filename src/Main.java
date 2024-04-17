@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
+    private static final Scanner input = new Scanner(System.in); // global scanner then final para di mabago
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Macro Lite, the Calorie Counter App");
         System.out.println("Please enter your Profile Information");
         //user input profile info
