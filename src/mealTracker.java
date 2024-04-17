@@ -180,26 +180,24 @@ public class mealTracker {
 
         System.out.println("You selected: " + mealName);
         System.out.println("Meal in " + mealName + " to delete: ");
-        boolean mealFound = false;
+        List<String> mealKeys = new ArrayList<>();
+        int i = 1;
         for (String key : meals.keySet()) {
-            if (key.startsWith(mealName)) {
-                System.out.println(key.substring(mealName.length() + 1)); // +1 to remove the space
-                mealFound = true;
+            if (key.contains(mealName)) {
+                mealKeys.add(key);
+                System.out.println(i + ". " + key.substring(mealName.length() + 1) + " gram/s"); // +1 to remove the space
+                i++;
             }
         }
-        if (!mealFound) {
-            System.out.println("No meals found in " + mealName);
-            return;
-        }
-        System.out.println("Enter the name of the meal to delete from " + mealName + ":");
-        String foodName = input.nextLine().toLowerCase();
 
-        String key = mealName + " " + foodName;
-        if(meals.containsKey(key)) {
+        System.out.println("Enter the name of the meal to delete from " + mealName + ":");
+        int mealNumber = input.nextInt() - 1; // to start at 0
+        if (mealNumber >= 0 && mealNumber < mealKeys.size()) {
+            String key = mealKeys.get(mealNumber);
             meals.remove(key);
             System.out.println("Meal deleted.");
         } else {
-            System.out.println("Meal not found.");
+            System.out.println("Invalid meal number.");
         }
     }
 
@@ -248,7 +246,7 @@ public class mealTracker {
         for (String key : meals.keySet()) {
             if (key.startsWith(mealName)) {
                 Meal meal = meals.get(key);
-                System.out.println(i + ". " + key.substring(mealName.length() + 1) + " " + meal.servingSize + " gram/s"); // +1 to remove the space and display serving size
+                System.out.println(i + ". " + key.substring(mealName.length() + 1) + " gram/s"); // +1 to remove the space and display serving size
                 mealKeys.add(key);
                 i++;
             }
@@ -266,7 +264,16 @@ public class mealTracker {
             }
             double newServingSize = input.nextDouble();
             Meal meal = meals.get(key);
+            MealInfo originalMealInfo = meal.getMealInfo();
+            MealInfo scaledMealInfo = new MealInfo(
+                    originalMealInfo.getCalories(),
+                    originalMealInfo.getCarbs(),
+                    originalMealInfo.getFats(),
+                    originalMealInfo.getProtein()
+            );
+            scaledMealInfo.scaleNutritionalValues(newServingSize);
             meal.servingSize = newServingSize;
+            meal.mealInfo = scaledMealInfo; // update mealinfo with new values
             System.out.println("Meal updated");
         } else {
             System.out.println("Invalid meal number.");
