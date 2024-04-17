@@ -18,4 +18,17 @@ public class MealInfo {
         this.fats *= scale;
         this.protein *= scale;
     }
+
+    public double getCalories() {
+        return calories;
+    }
+    public double getCarbs() {
+        return carbs;
+    }
+    public double getFats() {
+        return fats;
+    }
+    public double getProtein() {
+        return protein;
+    }
 }

@@ -104,18 +104,20 @@ public class mealTracker {
         input.nextLine();
 
         if (foodDatabase.hasMealInfo(searchName)) {
-            MealInfo mealInfo = foodDatabase.getMealInfo(searchName);
-            mealInfo.scaleNutritionalValues(servingSize);
+            MealInfo originalmealInfo = foodDatabase.getMealInfo(searchName);
+            MealInfo scaledMealInfo = new MealInfo(
+                    originalmealInfo.getCalories(),
+                    originalmealInfo.getCarbs(),
+                    originalmealInfo.getFats(),
+                    originalmealInfo.getProtein()
+            );
+            scaledMealInfo.scaleNutritionalValues(servingSize);
+            Meal meal = new Meal(mealName, searchName, servingSize, scaledMealInfo); // add meal info to meal constructor
+            String key = mealName + " " + searchName + " " + servingSize;
+            meals.put(key, meal);
         } else {
             System.out.println("Food not found in database.");
         }
-        String key = mealName + " " + searchName; // para di ma overwritten foods
-        if (meals.containsKey(key)) {
-            key += " " + mealCounter++; // add timestamp to key to avoid overwriting existing meal
-
-        }
-        Meal meal = new Meal(mealName, searchName, servingSize);
-        meals.put(key, meal);
     }
 
 
@@ -128,15 +130,11 @@ public class mealTracker {
                 System.out.println("\nMeal Name: " + meal.mealName);
                 System.out.println("Food Name: " + meal.foodName);
                 System.out.println("Serving Size: " + meal.servingSize);
-                if (foodDatabase.hasMealInfo(meal.foodName)) {
-                    MealInfo mealInfo = foodDatabase.getMealInfo(meal.foodName);
-                    System.out.println("Calories: " + df.format(mealInfo.calories));
-                    System.out.println("Carbs: " + df.format(mealInfo.carbs));
-                    System.out.println("Fats: " + df.format(mealInfo.fats));
-                    System.out.println("Protein: " + df.format(mealInfo.protein));
-                } else {
-                    System.out.println("Nutritional information not found in database.");
-                }
+                MealInfo mealInfo = meal.getMealInfo();
+                System.out.println("Calories: " + df.format(mealInfo.calories));
+                System.out.println("Carbs: " + df.format(mealInfo.carbs));
+                System.out.println("Fats: " + df.format(mealInfo.fats));
+                System.out.println("Protein: " + df.format(mealInfo.protein));
             }
         }
     }
