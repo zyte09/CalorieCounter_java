@@ -4,14 +4,15 @@ public class MealInfo {
     private final double originalFats;
     private final double originalProtein;
 
-    //constructor
+    //constructor mealinfo with nutritional info
     public MealInfo(double calories, double carbs, double fats, double protein) {
         this.originalCalories = calories;
         this.originalCarbs = carbs;
         this.originalFats = fats;
         this.originalProtein = protein;
     }
-    public MealInfo scaleNutritionalValues(double newServingSize) {
+    //return mealinfo with nutritional values scaled by 100grams
+    public MealInfo getScaledMealInfo(double newServingSize) {
         double scale = newServingSize / 100.0;
         return new MealInfo(
                 originalCalories * scale,

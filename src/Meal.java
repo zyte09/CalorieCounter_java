@@ -8,7 +8,7 @@ public class Meal {
         this.mealName = mealName;
         this.foodName = foodName;
         this.servingSize = servingSize;
-        this.mealInfo = mealInfo.scaleNutritionalValues(servingSize); // scale the nutritional values based on the serving size
+        this.mealInfo = mealInfo.getScaledMealInfo(servingSize); // scale the nutritional values based on the serving size
     }
 
     public MealInfo getMealInfo() {

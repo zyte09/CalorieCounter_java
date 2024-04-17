@@ -73,7 +73,7 @@ public class mealTracker {
                     originalmealInfo.getFats(),
                     originalmealInfo.getProtein()
             );
-            scaledMealInfo.scaleNutritionalValues(servingSize);
+            scaledMealInfo.getScaledMealInfo(servingSize);
             Meal meal = new Meal(mealName, searchName, servingSize, scaledMealInfo); // add meal info to meal constructor
             String key = mealName + " " + searchName + " " + servingSize;
             meals.put(key, meal);
@@ -96,7 +96,7 @@ public class mealTracker {
                         originalMealInfo.getFats(),
                         originalMealInfo.getProtein()
                 );
-                scaledMealInfo.scaleNutritionalValues(meal.getServingSize());
+                scaledMealInfo.getScaledMealInfo(meal.getServingSize());
                 meal.setMealInfo(scaledMealInfo); //update mealInfo with new values
 
                 System.out.println("\nMeal Name: " + meal.getMealName());
@@ -166,7 +166,7 @@ public class mealTracker {
                     originalMealInfo.getFats(),
                     originalMealInfo.getProtein()
             );
-            scaledMealInfo.scaleNutritionalValues(newServingSize);
+            scaledMealInfo.getScaledMealInfo(newServingSize);
             meal.servingSize = newServingSize;
             meal.setMealInfo(scaledMealInfo); // update mealinfo with new values
             System.out.println("Meal updated");
