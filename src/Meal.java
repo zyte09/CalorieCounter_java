@@ -1,8 +1,8 @@
 public class Meal {
     private final String mealName;
     private final String foodName;
-    double servingSize;
-    MealInfo mealInfo; // store the nutritional information of the meal
+    private double servingSize;
+    private MealInfo mealInfo; // store the nutritional information of the meal
 
     public Meal(String mealName, String foodName, double servingSize, MealInfo mealInfo) {
         this.mealName = mealName;
@@ -21,6 +21,11 @@ public class Meal {
 
     public double getServingSize() {
         return servingSize;
+    }
+
+    public void setServingSize(double servingSize) {
+        this.servingSize = servingSize;
+        this.mealInfo = this.mealInfo.getScaledMealInfo(servingSize); // update mealInfo when servingSize change
     }
 
     public String getMealName() {

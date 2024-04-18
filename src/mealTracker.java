@@ -159,7 +159,7 @@ public class mealTracker {
             }
             double newServingSize = input.nextDouble();
             Meal meal = meals.get(oldkey);
-            meal.servingSize = newServingSize;
+            meal.setServingSize(newServingSize); // using setter, for encapsulation
             meal.setMealInfo(foodDatabase.getMealInfo(meal.getFoodName()).getScaledMealInfo(newServingSize)); // update mealinfo with new values
             meals.remove(oldkey); // remove old meal
             String newKey = mealName + " " + meal.getFoodName() + " " + newServingSize; // new values with updated values
