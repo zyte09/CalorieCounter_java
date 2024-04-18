@@ -6,10 +6,13 @@ public class MealInfo {
 
     //constructor mealinfo with nutritional info
     public MealInfo(double calories, double carbs, double fats, double protein) {
-        this.originalCalories = calories;
-        this.originalCarbs = carbs;
-        this.originalFats = fats;
-        this.originalProtein = protein;
+        if (calories < 0 || carbs < 0 || fats < 0 || protein < 0 ) {
+            System.out.println("Nutritional values cannot be negative.");
+        }
+        this.originalCalories = Math.abs(calories);
+        this.originalCarbs = Math.abs(carbs);
+        this.originalFats = Math.abs(fats);
+        this.originalProtein = Math.abs(protein);
     }
     //return mealinfo with nutritional values scaled by 100grams
     public MealInfo getScaledMealInfo(double newServingSize) {

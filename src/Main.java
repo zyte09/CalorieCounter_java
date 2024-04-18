@@ -103,10 +103,7 @@ public class Main {
             case 5:
                 activityLevel = "Athlete Exercise (2x per day)";
                 break;
-            default:
-                System.out.println("Unexpected error occurred.");
         }
-
 
         System.out.println("\nGoal");
         System.out.println("If you are a beginner, go Maintenance first");
@@ -138,8 +135,6 @@ public class Main {
             case 3:
                 goal = "Gain muscle (Bulking)";
                 break;
-            default:
-                System.out.println("Unexpected error occurred.");
         }
 
 

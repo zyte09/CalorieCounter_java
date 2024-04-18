@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.text.DecimalFormat;
 
 public class mealTracker {
-    HashMap<String, Meal> meals = new HashMap<>();
-    FoodDatabase foodDatabase = new FoodDatabase();
-    Scanner input = new Scanner(System.in); // scanner global
+    private final HashMap<String, Meal> meals = new HashMap<>(); //final prevents the variable from being changed
+    private final FoodDatabase foodDatabase = new FoodDatabase();
+    private final Scanner input = new Scanner(System.in); // scanner global
     public void displaymealTracker() {
         int choice = 0;
         while (choice != 5) {
@@ -101,11 +101,11 @@ public class mealTracker {
 
                 System.out.println("\nMeal Name: " + meal.getMealName());
                 System.out.println("Food Name: " + meal.getFoodName());
-                System.out.println("Serving Size: " + meal.getServingSize());
-                System.out.println("Calories: " + df.format(meal.getMealInfo().getCalories()));
-                System.out.println("Carbs: " + df.format(meal.getMealInfo().getCarbs()));
-                System.out.println("Fats: " + df.format(meal.getMealInfo().getFats()));
-                System.out.println("Protein: " + df.format(meal.getMealInfo().getProtein()));
+                System.out.println("Serving Size: " + meal.getServingSize() + " grams");
+                System.out.println("Calories: " + df.format(meal.getMealInfo().getCalories()) + " kcal");
+                System.out.println("Carbs: " + df.format(meal.getMealInfo().getCarbs()) + " gram/s");
+                System.out.println("Fats: " + df.format(meal.getMealInfo().getFats()) + " gram/s");
+                System.out.println("Protein: " + df.format(meal.getMealInfo().getProtein()) + " gram/s");
             }
         }
     }
