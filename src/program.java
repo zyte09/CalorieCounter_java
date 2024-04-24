@@ -11,9 +11,9 @@ public class program {
     public void displayProgram() {
         while (true) {
             System.out.println("Workout Program");
-            System.out.println("\n1. Start...");
+            System.out.println("\n1. Start your workout");
             System.out.println("2. Training program");
-            System.out.println("2. Estimate your 1RM");
+            System.out.println("3. Estimate your 1RM");
             System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
@@ -47,12 +47,6 @@ public class program {
         int fitnessLevel = input.nextInt();
         input.nextLine();
 
-        System.out.println("Which type of equipment you use?");
-        System.out.println("1. No equipment");
-        System.out.println("2. Gym equipment");
-        int equipmentChoice = input.nextInt();
-        input.nextLine();
-        System.out.println("You chose: " + equipmentChoice);
     }
 
     public void estimate1RM() {
@@ -76,14 +70,30 @@ public class program {
     }
 
     public void bodyweightWorkout() {
-        System.out.println("Choose a workout:");
-        for (String workoutName : workouts.keySet()) {
-                System.out.println(workoutName);
+        while (true) {
+            System.out.println("Do you want to start your workout?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            System.out.println("Enter your choice: ");
+            int choice = input.nextInt();
+            input.nextLine();
+            if (choice == 1) {
+                System.out.println("Choose a workout:");
+                for (String workoutName : workouts.keySet()) {
+                    System.out.println(workoutName);
+                }
+                System.out.print("\nEnter your choice: ");
+                String chosenWorkout = input.nextLine();
+                displayWorkout(chosenWorkout);
+                workouts.get(chosenWorkout).startWorkout();
+                return;
+
+            } else if (choice == 2) {
+                return;
+            } else {
+                System.out.println("Invalid choice. Please enter 1 or 2.");
+            }
         }
-        System.out.println("Enter your choice:");
-        String chosenWorkout = input.nextLine();
-        displayWorkout(chosenWorkout);
-        workouts.get(chosenWorkout).startWorkout();
     }
 
     public void gymWorkout() {
@@ -99,7 +109,7 @@ public class program {
     private void displayWorkout(String workoutName) {
         Workout workout = workouts.get(workoutName);
         if (workout != null) {
-            System.out.println("Exercises for " + workout.getName() + ":");
+            System.out.println("\nExercises for " + workout.getName() + ":");
             for (Exercise exercise : workout.getExercises()) {
                 System.out.println(exercise);
             }
@@ -108,27 +118,12 @@ public class program {
         }
     }
     public void startWorkout() {
-        while (true) {
-            System.out.println("\nChoose the type of workout:");
-            System.out.println("1. Bodyweight workout");
-            System.out.println("2. Gym workout");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice: ");
-            int equipmentChoice = input.nextInt();
-            input.nextLine();
-            switch (equipmentChoice) {
-                case 1:
-                    bodyweightWorkout();
-                    break;
-                case 2:
-                    gymWorkout();
-                    break;
-                case 3:
-                    System.out.println("Exiting...");
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
+        System.out.println("Choose a workout:");
+        for (String workoutName : workouts.keySet()) {
+            System.out.println(workoutName);
         }
+        String chosenWorkout = input.nextLine();
+        displayWorkout(chosenWorkout);
+        workouts.get(chosenWorkout).startWorkout();
     }
 }
