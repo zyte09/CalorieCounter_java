@@ -1,30 +1,24 @@
-import java.util.Map;
 import java.util.Scanner;
 public class program {
     private final Scanner input = new Scanner(System.in);
-    private final Map<String, Workout> workouts;
-
-    public program(){
-        this.workouts = Workout.initializeWorkouts();
-    }
-
+    private final WorkoutProgram workoutProgram = new WorkoutProgram(); //para magamit yung displayWorkout
     public void displayProgram() {
         while (true) {
             System.out.println("Workout Program");
-            System.out.println("\n1. Start your workout");
-            System.out.println("2. Training program");
+            System.out.println("\n1. View workout program");
+            System.out.println("2. View Training Info");
             System.out.println("3. Estimate your 1RM");
-            System.out.println("3. Exit");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine();
 
             switch (choice) {
                 case 1:
-                    startWorkout();
+                    workoutProgram();
                     break;
                 case 2:
-                    training();
+                    viewTrainingInfo();
                     break;
                 case 3:
                     estimate1RM();
@@ -38,7 +32,7 @@ public class program {
         }
     }
 
-    public void training() {
+    public void viewTrainingInfo() {
         System.out.println("What's your fitness level?");
         System.out.println("1. Beginner (Less than 6 months of experience)");
         System.out.println("2. Intermediate (More than 6 months and less than 2 years of experience)");
@@ -46,6 +40,47 @@ public class program {
         System.out.println("Enter your choice: ");
         int fitnessLevel = input.nextInt();
         input.nextLine();
+
+        System.out.println("What's your training goal?");
+        System.out.println("1. Strength");
+        System.out.println("2. Hypertrophy (Muscle Growth)");
+        System.out.println("3. Endurance");
+        System.out.println("Enter your choice: ");
+        int trainingGoal = input.nextInt();
+        input.nextLine();
+
+        System.out.println("What's your training frequency?");
+        System.out.println("1. 3 days per week");
+        System.out.println("2. 4 days per week");
+        System.out.println("3. 5 days per week");
+        System.out.println("4. 6 days per week");
+        System.out.println("5. 7 days per week");
+        System.out.println("Enter your choice: ");
+        int trainingFrequency = input.nextInt();
+        input.nextLine();
+
+        System.out.println("What's your training split?");
+        System.out.println("1. Full body workout");
+        System.out.println("2. Upper/Lower body split");
+        System.out.println("3. Push/Pull/Legs split");
+        System.out.println("Enter your choice: ");
+        int trainingSplit = input.nextInt();
+        input.nextLine();
+
+        System.out.println("What's your training volume?");
+        System.out.println("1. Low volume (3-6 sets per muscle group)");
+        System.out.println("2. Moderate volume (7-9 sets per muscle group)");
+        System.out.println("3. High volume (10+ sets per muscle group)");
+        System.out.println("Enter your choice: ");
+        int trainingVolume = input.nextInt();
+
+        System.out.println("Your training program is as follows:");
+        System.out.println("Fitness Level: " + fitnessLevel);
+        System.out.println("Training Goal: " + trainingGoal);
+        System.out.println("Training Frequency: " + trainingFrequency);
+        System.out.println("Training Split: " + trainingSplit);
+        System.out.println("Training Volume: " + trainingVolume);
+        System.out.println("\n");
 
     }
 
@@ -69,61 +104,22 @@ public class program {
         return weight * (1 + (double) reps / 30);
     }
 
-    public void bodyweightWorkout() {
-        while (true) {
-            System.out.println("Do you want to start your workout?");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-            System.out.println("Enter your choice: ");
-            int choice = input.nextInt();
-            input.nextLine();
-            if (choice == 1) {
-                System.out.println("Choose a workout:");
-                for (String workoutName : workouts.keySet()) {
-                    System.out.println(workoutName);
-                }
-                System.out.print("\nEnter your choice: ");
-                String chosenWorkout = input.nextLine();
-                displayWorkout(chosenWorkout);
-                workouts.get(chosenWorkout).startWorkout();
-                return;
+    public void workoutProgram(){
+        System.out.println("\nWorkout Program");
+        System.out.println("1. Upper body workout");
+        System.out.println("2. Lower body workout");
+        System.out.println("3. Full body workout");
+        System.out.println("4. Push workout");
+        System.out.println("5. Pull workout");
+        System.out.println("6. Legs workout");
+        System.out.println("7. Back workout");
+        System.out.println("8. Chest workout");
+        System.out.println("9. Shoulder workout");
+        System.out.println("10. Arm workout");
+        System.out.print("Enter your choice: ");
+        int workoutChoice = input.nextInt();
+        input.nextLine();
 
-            } else if (choice == 2) {
-                return;
-            } else {
-                System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
-        }
-    }
-
-    public void gymWorkout() {
-        System.out.println("Choose a workout:");
-        for (String workoutName : workouts.keySet()) {
-                System.out.println(workoutName);
-        }
-        String chosenWorkout = input.nextLine();
-        displayWorkout(chosenWorkout);
-        workouts.get(chosenWorkout).startWorkout();
-    }
-
-    private void displayWorkout(String workoutName) {
-        Workout workout = workouts.get(workoutName);
-        if (workout != null) {
-            System.out.println("\nExercises for " + workout.getName() + ":");
-            for (Exercise exercise : workout.getExercises()) {
-                System.out.println(exercise);
-            }
-        } else {
-            System.out.println("No exercises found for this workout.");
-        }
-    }
-    public void startWorkout() {
-        System.out.println("Choose a workout:");
-        for (String workoutName : workouts.keySet()) {
-            System.out.println(workoutName);
-        }
-        String chosenWorkout = input.nextLine();
-        displayWorkout(chosenWorkout);
-        workouts.get(chosenWorkout).startWorkout();
+        workoutProgram.displayWorkout(workoutChoice);
     }
 }
