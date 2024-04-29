@@ -66,6 +66,21 @@ public class Main {
         }
         input.nextLine();
 
+        int goalWeight = 0;
+        while (goalWeight <= 0) {
+            System.out.println("Enter your goal weight(kg): ");
+            if (input.hasNextInt()) {
+                goalWeight = input.nextInt();
+                if (goalWeight <= 0) {
+                    System.out.println("Please enter a valid weight.");
+                }
+            } else {
+                System.out.println("Please enter a valid weight.");
+                input.next();
+            }
+        }
+        input.nextLine();
+
         System.out.println("\nActivity Level");
         System.out.println("1. Sedentary (Office Job)");
         System.out.println("2. Light Exercise (1-2 days/week)");
@@ -139,6 +154,7 @@ public class Main {
 
 
         Profile user = new Profile(name, gender, activityLevel, goal, age, weight, height);
+        user.setGoalWeight(goalWeight);
         mealTracker myMealTracker = new mealTracker();
         home home = new home(myMealTracker);
         program program = new program();

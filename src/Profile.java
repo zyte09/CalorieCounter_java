@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Profile {
     private String name, gender, activity, goal;
-    private int age, weight, height;
+    private int age, weight, height, goalWeight;
     private List<Integer> weightHistory = new ArrayList<>();
 
     public Profile(String name, String gender, String activity, String goal, int age, int weight, int height) {
@@ -109,6 +109,14 @@ public class Profile {
         } else {
             return "Extreme obesity";
         }
+    }
+
+    public int getGoalWeight() {
+        return goalWeight;
+    }
+
+    public void setGoalWeight(int goalWeight) {
+        this.goalWeight = goalWeight;
     }
 
     public void updateWeight(int newWeight) {

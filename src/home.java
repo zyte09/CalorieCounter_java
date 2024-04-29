@@ -31,13 +31,14 @@ public class home {
     public void displayWeightProgress(Profile user) {
         System.out.println("\n============ Weight Progress ============");
         System.out.println("Current Weight: " + user.getWeight() + " kg");
-        int weightProgress = user.getWeightProgess();
-        if (weightProgress > 0) {
-            System.out.println("You have gained " + weightProgress + " kg since your last update.");
-        } else if (weightProgress < 0) {
-            System.out.println("You have lost " + Math.abs(weightProgress) + " kg since your last update.");
+        System.out.println("Goal Weight: " + user.getGoalWeight() + " kg");
+        int weightGoal = user.getWeight() - user.getGoalWeight();
+        if (weightGoal > 0) {
+            System.out.println("You are " + weightGoal + " kg away from your goal weight");
+        } else if (weightGoal < 0) {
+            System.out.println("You have surpassed your goal weight " + Math.abs(weightGoal));
         } else {
-            System.out.println("Your weight has not changed since your last update.");
+            System.out.println("Congratulations! You have reached your goal weight");
         }
         System.out.println("=========================================");
     }
