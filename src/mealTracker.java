@@ -210,4 +210,14 @@ public class mealTracker {
     System.out.println("You selected: " + mealName);
     return mealName;
     }
+
+    public double getTotalCalForMeals(String mealType) {
+        double totalCalories = 0;
+        for (Meal meal : meals.values()) {
+            if (meal.getMealName().equals(mealType)) {
+                totalCalories += meal.getMealInfo().getCalories();
+            }
+        }
+        return totalCalories;
+    }
 }

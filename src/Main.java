@@ -139,8 +139,8 @@ public class Main {
 
 
         Profile user = new Profile(name, gender, activityLevel, goal, age, weight, height);
-        home home = new home();
-        mealTracker mealTracker = new mealTracker();
+        mealTracker myMealTracker = new mealTracker();
+        home home = new home(myMealTracker);
         program program = new program();
         more more = new more();
         //menu
@@ -154,7 +154,7 @@ public class Main {
                     home.displayHome(user);
                     break;
                 case 2:
-                    mealTracker.displaymealTracker();
+                    myMealTracker.displaymealTracker();
                     break;
                 case 3:
                     program.displayProgram();
@@ -172,7 +172,7 @@ public class Main {
         }
     }
     public static void displayMenu() {
-        System.out.println("\n1. Main");
+        System.out.println("\n1. Home");
         System.out.println("2. Meal Tracker");
         System.out.println("3. Workout");
         System.out.println("4. More");

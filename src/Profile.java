@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Profile {
     private String name, gender, activity, goal;
     private int age, weight, height;
+    private List<Integer> weightHistory = new ArrayList<>();
 
     public Profile(String name, String gender, String activity, String goal, int age, int weight, int height) {
         this.name = name;
@@ -92,15 +96,6 @@ public class Profile {
         System.out.println("Body Mass Index(BMI): " + bmi + "kg/m^2");
     }
 
-    public void displayCalories(){
-        double tdee = (int) calcuTDEE();
-        System.out.println(tdee + " goal for today");
-
-//        System.out.println("\nTDEE shows your Maintenance Calories");
-//        System.out.println("BMR shows minimum energy required by major body organs to function even while you are at rest.");
-//        System.out.println("BMI is a measure of your body's weight.");
-    }
-
     public String weightCategory() {
         double bmi = calcuBMI();
         if (bmi < 18.5) {
@@ -114,6 +109,22 @@ public class Profile {
         } else {
             return "Extreme obesity";
         }
+    }
+
+    public void updateWeight(int newWeight) {
+        setWeight(newWeight);
+        weightHistory.add(newWeight);
+    }
+
+    public int getWeightProgess(){
+        if (weightHistory.size() < 2) {
+            return 0;
+        }
+        return weightHistory.get(weightHistory.size() - 1) - weightHistory.get(weightHistory.size() - 2);
+    }
+
+    public List<Integer> getWeightHistory(){
+        return weightHistory;
     }
 
 
