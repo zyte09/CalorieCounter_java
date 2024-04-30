@@ -66,6 +66,7 @@ public class Main {
         }
         input.nextLine();
 
+        //goal weight
         int goalWeight = 0;
         while (goalWeight <= 0) {
             System.out.println("Enter your goal weight(kg): ");
@@ -81,6 +82,7 @@ public class Main {
         }
         input.nextLine();
 
+        //activity level
         System.out.println("\nActivity Level");
         System.out.println("1. Sedentary (Office Job)");
         System.out.println("2. Light Exercise (1-2 days/week)");

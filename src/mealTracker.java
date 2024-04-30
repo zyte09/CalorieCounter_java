@@ -82,7 +82,6 @@ public class mealTracker {
         }
     }
 
-
     public void displayAllMeals() {
         DecimalFormat df = new DecimalFormat("#.##");
         if (meals.isEmpty()) {
