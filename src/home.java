@@ -34,6 +34,7 @@ public class home {
         System.out.println("\n============ Weight Progress ============");
         System.out.println("Current Weight: " + user.getWeight() + " kg");
         System.out.println("Goal Weight: " + user.getGoalWeight() + " kg");
+        System.out.println("Weight Category: " + user.getWeightCategory());
         int weightGoal = user.getWeight() - user.getGoalWeight();
         if (weightGoal > 0) {
             System.out.println("You are " + weightGoal + " kg away from your goal weight");

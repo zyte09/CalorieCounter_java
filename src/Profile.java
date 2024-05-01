@@ -1,10 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Profile {
     private String name, gender, activity, goal;
     private int age, weight, height, goalWeight;
-    private List<Integer> weightHistory = new ArrayList<>();
 
     public Profile(String name, String gender, String activity, String goal, int age, int weight, int height) {
         this.name = name;
@@ -90,44 +86,20 @@ public class Profile {
         double tdeeperweek = (int) calcuTDEEperWeek();
         double bmr = (int) calcuBMR();
         double bmi = (int) calcuBMI();
-        String weightCategory = weightCategory();
         System.out.println("Profile");
-        System.out.println("Name: " + name);
-        System.out.println("Gender: " + gender);
-        System.out.println("Activity Level: " + activity);
-        System.out.println("Goal: " + goal);
-        System.out.println("Age: " + age);
-        System.out.println("Height: " + height + " cm");
-        System.out.println("Weight: " + weight + " kg");
-        System.out.println("Weight Category: " + weightCategory);
+        System.out.println("Name: " + getName());
+        System.out.println("Gender: " + getGender());
+        System.out.println("Activity Level: " + getActivity());
+        System.out.println("Goal: " + getGoal());
+        System.out.println("Age: " + getAge());
+        System.out.println("Height: " + getHeight() + " cm");
+        System.out.println("Weight: " + getWeight() + " kg");
+        System.out.println("Weight Category: " + getWeightCategory());
         System.out.println("Total Daily Energy Expenditure(TDEE): " + tdee + " calories per day.");
         System.out.println("Total Daily Energy Expenditure(TDEE): " + tdeeperweek + " calories per week");
         System.out.println("Basal Metabolic Rate(BMR): " + bmr + " calories per day.");
         System.out.println("Body Mass Index(BMI): " + bmi + "kg/m^2");
     }
-
-    public String getActivityLevel(int activityChoice) {
-        String activityLevel = "";
-        switch (activityChoice) {
-            case 1:
-                activityLevel = "Sedentary (Office Job)";
-                break;
-            case 2:
-                activityLevel = "Light Exercise (1-2 days/week)";
-                break;
-            case 3:
-                activityLevel = "Moderate Exercise (3-5 days/week)";
-                break;
-            case 4:
-                activityLevel = "Heavy Exercise (6-7 days/week)";
-                break;
-            case 5:
-                activityLevel = "Athlete Exercise (2x per day)";
-                break;
-        }
-        return activityLevel;
-    }
-
 
     public String weightCategory() {
         double bmi = calcuBMI();
@@ -144,6 +116,11 @@ public class Profile {
         }
     }
 
+    //getter and setter
+    public String getWeightCategory() {
+        return weightCategory();
+    }
+
     public int getGoalWeight() {
         return goalWeight;
     }
@@ -152,24 +129,6 @@ public class Profile {
         this.goalWeight = goalWeight;
     }
 
-    public void updateWeight(int newWeight) {
-        setWeight(newWeight);
-        weightHistory.add(newWeight);
-    }
-
-    public int getWeightProgess(){
-        if (weightHistory.size() < 2) {
-            return 0;
-        }
-        return weightHistory.get(weightHistory.size() - 1) - weightHistory.get(weightHistory.size() - 2);
-    }
-
-    public List<Integer> getWeightHistory(){
-        return weightHistory;
-    }
-
-
-    //get and set name
     public String getName() {
         return name;
     }

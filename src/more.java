@@ -20,7 +20,6 @@ public class more {
             System.out.println("4. Update Profile");
             System.out.println("5. Exit");
             System.out.println("==============================");
-
             System.out.print("Please select an option (1-5): ");
             if (input.hasNextInt()) {
                 option = input.nextInt();
@@ -55,22 +54,46 @@ public class more {
         System.out.println("1. Update Current Weight");
         System.out.println("2. Update Goal Weight");
         System.out.println("3. Update Activity Level");
-        System.out.println("4. Back");
+        System.out.println("4. Update Fitness Goal");
+        System.out.println("5. Back");
         System.out.println("===============================");
-
         System.out.print("Please select an option (1-4): ");
         int option = input.nextInt();
         input.nextLine();
 
         switch(option){
             case 1:
-                System.out.println("Enter your new weight(kg): ");
-                int weight = input.nextInt();
+                int weight = 0;
+                while (weight <= 0) {
+                    System.out.println("Enter your new weight(kg): ");
+                    if (input.hasNextInt()) {
+                        weight = input.nextInt();
+                        if (weight <= 0) {
+                            System.out.println("Please enter a valid weight.");
+                        }
+                    } else {
+                        System.out.println("Please enter a valid weight.");
+                        input.next();
+                    }
+                }
+                input.nextLine();
                 user.setWeight(weight);
                 break;
             case 2:
-                System.out.println("Enter your new goal weight(kg): ");
-                int goalWeight = input.nextInt();
+                int goalWeight = 0;
+                while (goalWeight <= 0) {
+                    System.out.println("Enter your new goal weight(kg): ");
+                    if (input.hasNextInt()) {
+                        goalWeight = input.nextInt();
+                        if (goalWeight <= 0) {
+                            System.out.println("Please enter a valid weight.");
+                        }
+                    } else {
+                        System.out.println("Please enter a valid weight.");
+                        input.next();
+                    }
+                }
+                input.nextLine();
                 user.setGoalWeight(goalWeight);
                 break;
             case 3:
@@ -104,7 +127,42 @@ public class more {
                 user.setActivity(activityLevel);
                 break;
             case 4:
-                System.out.println("Exiting...");
+                System.out.println("\nGoals");
+
+                System.out.println("If you are a beginner, go Maintenance first");
+                System.out.println("1. Loss weight (Cutting)");
+                System.out.println("2. Maintain weight (Maintenance)");
+                System.out.println("3. Gain muscle (Bulking)");
+                System.out.print("Input your choice (1-3): ");
+                int goalChoice = 0;
+                while (goalChoice < 1 || goalChoice > 3) {
+                    if (input.hasNextInt()) {
+                        goalChoice = input.nextInt();
+                        if (goalChoice < 1 || goalChoice > 3) {
+                            System.out.print("Please enter a valid choice (1-3): ");
+                        }
+                    } else {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                }
+
+                String goal = "";
+                switch (goalChoice) {
+                    case 1:
+                        goal = "Loss weight (Cutting)";
+                        break;
+                    case 2:
+                        goal = "Maintain weight (Maintenance)";
+                        break;
+                    case 3:
+                        goal = "Gain muscle (Bulking)";
+                        break;
+                }
+                user.setGoal(goal);
+                break;
+            case 5:
+                System.out.println("Exiting goals...");
                 return;
             default:
                 System.out.println("Please enter a valid choice");
@@ -117,13 +175,13 @@ public class more {
         System.out.println("2. Nutrition Facts");
         System.out.println("3. Exit");
         System.out.println("===================================");
-        System.out.println("Please select an option (1-3): ");
+        System.out.print("Please select an option (1-3): ");
         int option = input.nextInt();
         input.nextLine();
 
         switch(option){
             case 1:
-                displayCalories(user);
+                displayCalories();
                 break;
             case 2:
                 displayNutritionFacts(user);
@@ -144,7 +202,7 @@ public class more {
         System.out.println("5. Training Volume: " + prog.getTrainingVolume());
         System.out.println("6. Exit");
         System.out.println("=======================================");
-        System.out.println("Select the number of the info you want to update (1-6): ");
+        System.out.print("Select the number of the info you want to update (1-6): ");
         int option = input.nextInt();
         switch (option){
             case 1:
@@ -272,10 +330,96 @@ public class more {
     }
 
     public void updateProfile(Profile user){
-        //hghghg
+        System.out.println("============ Update Profile ============");
+        System.out.println("1. Veiw Profile");
+        System.out.println("2. Update Profile");
+        System.out.println("3. Exit");
+        System.out.println("========================================");
+        System.out.print("Please select an option (1-3): ");
+        int option = input.nextInt();
+        input.nextLine();
+
+        switch(option){
+            case 1:
+                user.displayProfile();
+                break;
+            case 2:
+                System.out.println("========================================");
+                System.out.println("What would you like to update?");
+                System.out.println("1. Update Name");
+                System.out.println("2. Update Gender");
+                System.out.println("3. Update Age");
+                System.out.println("4. Update Height");
+                System.out.println("5. Exit");
+                System.out.println("========================================");
+                System.out.println("Please select an option (1-5): ");
+                int updateOption = input.nextInt();
+                input.nextLine();
+
+                switch(updateOption){
+                    case 1:
+                        System.out.println("Enter your new name: ");
+                        String name = input.nextLine();
+                        user.setName(name);
+                        break;
+                    case 2:
+                        //validation gender
+                        String gender = "";
+                        while (!gender.equalsIgnoreCase("M") && !gender.equalsIgnoreCase("F")) {
+                            System.out.println("Enter your new gender (M/F): ");
+                            gender = input.nextLine();
+                            if (!gender.equalsIgnoreCase("M") && !gender.equalsIgnoreCase("F")) {
+                                System.out.println("Please enter either 'M' or 'F'.");
+                            }
+                        }
+                        user.setGender(gender);
+                        break;
+                    case 3:
+                        //validation age
+                        int age = 0;
+                        while (age <= 0) {
+                            System.out.println("Enter your new age: ");
+                            if (input.hasNextInt()) {
+                                age = input.nextInt();
+                                if (age <= 0) {
+                                    System.out.println("Please enter a valid age.");
+                                }
+                            } else {
+                                System.out.println("Please enter a valid age.");
+                                input.next();
+                            }
+                        }
+                        input.nextLine();
+                        user.setAge(age);
+                        break;
+                    case 4:
+                        //validation height
+                        int height = 0;
+                        while (height <= 0) {
+                            System.out.println("Enter your new height(cm): ");
+                            if (input.hasNextInt()) {
+                                height = input.nextInt();
+                                if (height <= 0) {
+                                    System.out.println("Please enter a valid height.");
+                                }
+                            } else {
+                                System.out.println("Please enter a valid height.");
+                                input.next();
+                            }
+                        }
+                        input.nextLine();
+                        user.setHeight(height);
+                        break;
+                    case 5:
+                        System.out.println("Exiting update profile...");
+                        return;
+                    default:
+                        System.out.println("Please enter a valid choice");
+                }
+            }
     }
 
-    public void displayCalories(Profile user){
+    public void displayCalories(){
         System.out.println("\n============ Calories ============");
         System.out.println("Breakfast: " + mealTracker.getTotalCalForMeals("Breakfast") + " calories");
         System.out.println("Lunch: " + mealTracker.getTotalCalForMeals("Lunch") + " calories");
@@ -309,5 +453,4 @@ public class more {
     System.out.println("Fat:     " + df.format(totalFat) + "  |  " + df.format(fatGoal) + "   |   " + df.format(fatLeft));
     System.out.println("=========================================");
 }
-
 }

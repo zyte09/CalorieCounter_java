@@ -154,7 +154,6 @@ public class Main {
                 break;
         }
 
-
         Profile user = new Profile(name, gender, activityLevel, goal, age, weight, height);
         user.setGoalWeight(goalWeight);
         mealTracker myMealTracker = new mealTracker();
@@ -164,7 +163,12 @@ public class Main {
         //menu
         while (true) {
             displayMenu();
-            System.out.print("Please select an option (1-5): ");
+            //para di mag error kapag hindi int ang input
+            while (!input.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a number.");
+                displayMenu();
+                input.next();
+            }
             int option = input.nextInt();
             input.nextLine();
             switch(option) {
@@ -190,10 +194,13 @@ public class Main {
         }
     }
     public static void displayMenu() {
-        System.out.println("\n1. Home");
+        System.out.println("\n============ Main Menu ============");
+        System.out.println("1. Home");
         System.out.println("2. Meal Tracker");
         System.out.println("3. Workout");
         System.out.println("4. More");
         System.out.println("5. Exit");
+        System.out.println("===================================");
+        System.out.print("Enter your choice (1-5): ");
     }
 }
