@@ -200,12 +200,12 @@ public class program {
         }
 
         if (trainingVolume.isEmpty()){
-            System.out.println("\n================ Training Info ================");
+            System.out.println("\n================= Training Info ================");
             System.out.println("What's your training volume?");
             System.out.println("1. Low volume (3-6 sets per muscle group)");
             System.out.println("2. Moderate volume (7-9 sets per muscle group)");
             System.out.println("3. High volume (10+ sets per muscle group)");
-            System.out.println("=================================================");
+            System.out.println("==================================================");
             System.out.print("Enter your choice (1-3): ");
             while (!input.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");

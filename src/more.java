@@ -50,17 +50,26 @@ public class more {
     }
 
     public void goals(Profile user) {
-        System.out.println("============ Goals ============");
+        System.out.println("\n============ Goals ============");
         System.out.println("1. Update Current Weight");
         System.out.println("2. Update Goal Weight");
         System.out.println("3. Update Activity Level");
         System.out.println("4. Update Fitness Goal");
         System.out.println("5. Back");
         System.out.println("===============================");
-        System.out.print("Please select an option (1-4): ");
-        int option = input.nextInt();
-        input.nextLine();
-
+        int option = 0;
+        while (option < 1 || option > 5) {
+            System.out.print("Please select an option (1-5): ");
+            if (input.hasNextInt()) {
+                option = input.nextInt();
+                if (option < 1 || option > 5) {
+                    System.out.println("Please enter a valid choice");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
         switch(option){
             case 1:
                 int weight = 0;
@@ -163,22 +172,29 @@ public class more {
                 break;
             case 5:
                 System.out.println("Exiting goals...");
-                return;
-            default:
-                System.out.println("Please enter a valid choice");
+                break;
         }
     }
 
     public void nutrition(Profile user){
-        System.out.println("============ Nutrition ============");
+        System.out.println("\n============ Nutrition ============");
         System.out.println("1. Calories");
         System.out.println("2. Nutrition Facts");
         System.out.println("3. Exit");
         System.out.println("===================================");
         System.out.print("Please select an option (1-3): ");
-        int option = input.nextInt();
-        input.nextLine();
-
+        int option = 0;
+        while (option < 1 || option > 3) {
+            if (input.hasNextInt()) {
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("Please enter a valid choice");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
         switch(option){
             case 1:
                 displayCalories();
@@ -188,13 +204,12 @@ public class more {
                 break;
             case 3:
                 System.out.println("Exiting nutrition...");
-                return;
-            default:
-                System.out.println("Please enter a valid choice");
+                break;
         }
     }
+
     public void trainingInfo(){
-        System.out.println("============ Training Info ============");
+        System.out.println("\n============ Training Info ============");
         System.out.println("1. Fitness Level: " + prog.getFitnessLevel());
         System.out.println("2. Training Goal: " + prog.getTrainingGoal());
         System.out.println("3. Training Frequency: " + prog.getTrainingFrequency());
@@ -203,13 +218,30 @@ public class more {
         System.out.println("6. Exit");
         System.out.println("=======================================");
         System.out.print("Select the number of the info you want to update (1-6): ");
-        int option = input.nextInt();
+        int option = 0;
+        while (option < 1 || option > 6) {
+            if (input.hasNextInt()) {
+                option = input.nextInt();
+                if (option < 1 || option > 6) {
+                    System.out.println("Please enter a valid choice");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
         switch (option){
             case 1:
+                System.out.println("============ Update Fitness Level ===============");
                 System.out.println("1. Beginner (Less than 6 months of experience)");
                 System.out.println("2. Intermediate (6 months - 1 year of experience)");
                 System.out.println("3. Advanced (More than 1 year of experience)");
-                System.out.println("Enter your new fitness level (1-3): ");
+                System.out.println("=================================================");
+                System.out.print("Enter your choice (1-3): ");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
                 int fitnessLevelchoice = input.nextInt();
                 switch (fitnessLevelchoice) {
                     case 1:
@@ -226,11 +258,16 @@ public class more {
                 }
                 break;
             case 2:
-                System.out.println("Enter your new training goal: ");
+                System.out.println("\n================ Update Training Goal ================");
                 System.out.println("1. Strength");
                 System.out.println("2. Hypertrophy (Muscle Growth)");
                 System.out.println("3. Endurance");
-                System.out.println("Enter your choice: ");
+                System.out.println("========================================================");
+                System.out.print("Enter your choice (1-3): ");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
                 int trainingGoalchoice = input.nextInt();
                 input.nextLine();
                 switch(trainingGoalchoice) {
@@ -248,13 +285,18 @@ public class more {
                 }
                 break;
             case 3:
-                System.out.println("Enter your new training frequency: ");
+                System.out.println("\n================ Update Training Frequency ================");
                 System.out.println("1. 3 days per week");
                 System.out.println("2. 4 days per week");
                 System.out.println("3. 5 days per week");
                 System.out.println("4. 6 days per week");
                 System.out.println("5. 7 days per week");
-                System.out.println("Enter your choice (1-5): ");
+                System.out.println("=============================================================");
+                System.out.print("Enter your choice (1-5): ");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
                 int trainingFrequencychoice = input.nextInt();
                 input.nextLine();
                 switch(trainingFrequencychoice) {
@@ -278,11 +320,17 @@ public class more {
                 }
                 break;
             case 4:
-                System.out.println("Enter your new training split: ");
-                System.out.println("1. Upper/Lower Split");
-                System.out.println("2. Push/Pull/Legs Split");
-                System.out.println("3. Full Body Split");
+                System.out.println("============ Update Training Split ============");
+                System.out.println("What's your training split?");
+                System.out.println("1. Full body workout");
+                System.out.println("2. Upper/Lower body split");
+                System.out.println("3. Push/Pull/Legs split");
+                System.out.println("===============================================");
                 System.out.println("Enter your choice (1-3): ");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
                 int trainingSplitchoice = input.nextInt();
                 input.nextLine();
                 switch(trainingSplitchoice) {
@@ -300,11 +348,17 @@ public class more {
                 }
                 break;
             case 5:
-                System.out.println("Enter your new training volume: ");
+                System.out.println("\n================ Update Training Volume ================");
+                System.out.println("What's your training volume?");
                 System.out.println("1. Low volume (3-6 sets per muscle group)");
                 System.out.println("2. Moderate volume (7-9 sets per muscle group)");
                 System.out.println("3. High volume (10+ sets per muscle group)");
-                System.out.println("Enter your choice (1-3): ");
+                System.out.println("=========================================================");
+                System.out.print("Enter your choice (1-3): ");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
                 int trainingVolumechoice = input.nextInt();
                 input.nextLine();
                 switch(trainingVolumechoice) {
@@ -323,28 +377,38 @@ public class more {
                 break;
             case 6:
                 System.out.println("Exiting training info...");
-                return;
-            default:
-                System.out.println("Please enter a valid choice");
+                break;
         }
     }
 
     public void updateProfile(Profile user){
-        System.out.println("============ Update Profile ============");
+        System.out.println("\n============ Update Profile ============");
         System.out.println("1. Veiw Profile");
         System.out.println("2. Update Profile");
         System.out.println("3. Exit");
         System.out.println("========================================");
         System.out.print("Please select an option (1-3): ");
-        int option = input.nextInt();
-        input.nextLine();
+        int option = 0;
+        while (option < 1 || option > 3) {
+            if (input.hasNextInt()) {
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("Please enter a valid choice");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                input.next();
+            }
+        }
 
         switch(option){
             case 1:
+                System.out.println("========================== Profile ===========================");
                 user.displayProfile();
+                System.out.println("==============================================================");
                 break;
             case 2:
-                System.out.println("========================================");
+                System.out.println("\n========================================");
                 System.out.println("What would you like to update?");
                 System.out.println("1. Update Name");
                 System.out.println("2. Update Gender");
@@ -353,9 +417,18 @@ public class more {
                 System.out.println("5. Exit");
                 System.out.println("========================================");
                 System.out.println("Please select an option (1-5): ");
-                int updateOption = input.nextInt();
-                input.nextLine();
-
+                int updateOption = 0;
+                while (updateOption < 1 || updateOption > 5) {
+                    if (input.hasNextInt()) {
+                        updateOption = input.nextInt();
+                        if (updateOption < 1 || updateOption > 5) {
+                            System.out.println("Please enter a valid choice");
+                        }
+                    } else {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                }
                 switch(updateOption){
                     case 1:
                         System.out.println("Enter your new name: ");

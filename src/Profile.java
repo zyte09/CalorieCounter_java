@@ -86,7 +86,6 @@ public class Profile {
         double tdeeperweek = (int) calcuTDEEperWeek();
         double bmr = (int) calcuBMR();
         double bmi = (int) calcuBMI();
-        System.out.println("Profile");
         System.out.println("Name: " + getName());
         System.out.println("Gender: " + getGender());
         System.out.println("Activity Level: " + getActivity());
