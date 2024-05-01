@@ -74,6 +74,16 @@ public class Profile {
         return weight / (heightMeters * heightMeters);
     }
 
+    public double getProteinGoal(){
+        return weight * 2.2; //2.2g of protein per kg of body weight
+    }
+    public double getCarbsGoal(){
+        return calcuTDEE() * 0.5; //50% of total daily energy expenditure
+    }
+    public double getFatGoal(){
+        return calcuTDEE() * 0.3; //30% of total daily energy expenditure
+    }
+
     //display profile
     public void displayProfile(){
         double tdee = (int) calcuTDEE();
@@ -95,6 +105,29 @@ public class Profile {
         System.out.println("Basal Metabolic Rate(BMR): " + bmr + " calories per day.");
         System.out.println("Body Mass Index(BMI): " + bmi + "kg/m^2");
     }
+
+    public String getActivityLevel(int activityChoice) {
+        String activityLevel = "";
+        switch (activityChoice) {
+            case 1:
+                activityLevel = "Sedentary (Office Job)";
+                break;
+            case 2:
+                activityLevel = "Light Exercise (1-2 days/week)";
+                break;
+            case 3:
+                activityLevel = "Moderate Exercise (3-5 days/week)";
+                break;
+            case 4:
+                activityLevel = "Heavy Exercise (6-7 days/week)";
+                break;
+            case 5:
+                activityLevel = "Athlete Exercise (2x per day)";
+                break;
+        }
+        return activityLevel;
+    }
+
 
     public String weightCategory() {
         double bmi = calcuBMI();

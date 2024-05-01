@@ -111,7 +111,6 @@ public class mealTracker {
 
     public void deleteMeal() {
         String mealName = selectMealType();
-        System.out.println("Meal in " + mealName + " to delete: ");
         List<String> mealKeys = new ArrayList<>();
         int i = 1;
         for (String key : meals.keySet()) {
@@ -121,7 +120,12 @@ public class mealTracker {
                 i++;
             }
         }
+        if (mealKeys.isEmpty()){
+            System.out.println("No meals to update.");
+            return;
+        }
 
+        System.out.println("Meal in " + mealName + " to delete: ");
         System.out.println("Enter the name of the meal to delete from " + mealName + ":");
         int mealNumber = input.nextInt() - 1; // to start at 0
         if (mealNumber >= 0 && mealNumber < mealKeys.size()) {
@@ -135,7 +139,6 @@ public class mealTracker {
 
     public void updateMeal() {
         String mealName = selectMealType();
-        System.out.println("Meal in " + mealName + " to update: ");
         List<String> mealKeys = new ArrayList<>();
         int i = 1;
         for (String key : meals.keySet()) {
@@ -146,6 +149,12 @@ public class mealTracker {
             }
         }
 
+        if (mealKeys.isEmpty()){
+            System.out.println("No meals to update.");
+            return;
+        }
+
+        System.out.println("Meal in " + mealName + " to update: ");
         System.out.println("Enter the number of the meal to update from " + mealName + ":");
         int mealNumber = input.nextInt() - 1; // -1 to get the correct index and to start at 0
         if (mealNumber >= 0 && mealNumber < mealKeys.size()){
@@ -218,5 +227,27 @@ public class mealTracker {
             }
         }
         return totalCalories;
+    }
+
+    public double getTotalProtein() {
+        double totalProtein = 0;
+        for (Meal meal : meals.values()) {
+            totalProtein += meal.getMealInfo().getProtein();
+        }
+        return totalProtein;
+    }
+    public double getTotalCarbs() {
+        double totalCarbs = 0;
+        for (Meal meal : meals.values()) {
+            totalCarbs += meal.getMealInfo().getCarbs();
+        }
+        return totalCarbs;
+    }
+    public double getTotalFats() {
+        double totalFats = 0;
+        for (Meal meal : meals.values()) {
+            totalFats += meal.getMealInfo().getFats();
+        }
+        return totalFats;
     }
 }
