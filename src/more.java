@@ -3,9 +3,11 @@ import java.text.DecimalFormat;
 public class more {
     private final mealTracker mealTracker;
     private final Scanner input = new Scanner(System.in);
+    private final program prog;
 
-    public more(mealTracker mealTracker){
+    public more(mealTracker mealTracker, program prog){
         this.mealTracker = mealTracker;
+        this.prog = prog;
     }
 
     public void displayMore(Profile user) {
@@ -36,7 +38,7 @@ public class more {
                         updateProfile(user);
                         break;
                     case 5:
-                        System.out.println("Returning to more menu...");
+                        System.out.println("Exiting more menu...");
                         break;
                     default:
                         System.out.println("Please enter a valid choice");
@@ -127,7 +129,7 @@ public class more {
                 displayNutritionFacts(user);
                 break;
             case 3:
-                System.out.println("Exiting...");
+                System.out.println("Exiting nutrition...");
                 return;
             default:
                 System.out.println("Please enter a valid choice");
@@ -135,10 +137,138 @@ public class more {
     }
     public void trainingInfo(){
         System.out.println("============ Training Info ============");
-        System.out.println("1. View Training Information");
-        System.out.println("2. Edit Training Information");
-        System.out.println("3. Exit");
+        System.out.println("1. Fitness Level: " + prog.getFitnessLevel());
+        System.out.println("2. Training Goal: " + prog.getTrainingGoal());
+        System.out.println("3. Training Frequency: " + prog.getTrainingFrequency());
+        System.out.println("4. Training Split: " + prog.getTrainingSplit());
+        System.out.println("5. Training Volume: " + prog.getTrainingVolume());
+        System.out.println("6. Exit");
         System.out.println("=======================================");
+        System.out.println("Select the number of the info you want to update (1-6): ");
+        int option = input.nextInt();
+        switch (option){
+            case 1:
+                System.out.println("1. Beginner (Less than 6 months of experience)");
+                System.out.println("2. Intermediate (6 months - 1 year of experience)");
+                System.out.println("3. Advanced (More than 1 year of experience)");
+                System.out.println("Enter your new fitness level (1-3): ");
+                int fitnessLevelchoice = input.nextInt();
+                switch (fitnessLevelchoice) {
+                    case 1:
+                        prog.setFitnessLevel("Beginner (Less than 6 months of experience)");
+                        break;
+                    case 2:
+                        prog.setFitnessLevel("Intermediate (6 months - 1 year of experience)");
+                        break;
+                    case 3:
+                        prog.setFitnessLevel("Advanced (More than 1 year of experience)");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                }
+                break;
+            case 2:
+                System.out.println("Enter your new training goal: ");
+                System.out.println("1. Strength");
+                System.out.println("2. Hypertrophy (Muscle Growth)");
+                System.out.println("3. Endurance");
+                System.out.println("Enter your choice: ");
+                int trainingGoalchoice = input.nextInt();
+                input.nextLine();
+                switch(trainingGoalchoice) {
+                    case 1:
+                        prog.setTrainingGoal("Strength");
+                        break;
+                    case 2:
+                        prog.setTrainingGoal("Hypertrophy (Muscle Growth)");
+                        break;
+                    case 3:
+                        prog.setTrainingGoal("Endurance");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                }
+                break;
+            case 3:
+                System.out.println("Enter your new training frequency: ");
+                System.out.println("1. 3 days per week");
+                System.out.println("2. 4 days per week");
+                System.out.println("3. 5 days per week");
+                System.out.println("4. 6 days per week");
+                System.out.println("5. 7 days per week");
+                System.out.println("Enter your choice (1-5): ");
+                int trainingFrequencychoice = input.nextInt();
+                input.nextLine();
+                switch(trainingFrequencychoice) {
+                    case 1:
+                        prog.setTrainingFrequency("3 days per week");
+                        break;
+                    case 2:
+                        prog.setTrainingFrequency("4 days per week");
+                        break;
+                    case 3:
+                        prog.setTrainingFrequency("5 days per week");
+                        break;
+                    case 4:
+                        prog.setTrainingFrequency("6 days per week");
+                        break;
+                    case 5:
+                        prog.setTrainingFrequency("7 days per week");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                }
+                break;
+            case 4:
+                System.out.println("Enter your new training split: ");
+                System.out.println("1. Upper/Lower Split");
+                System.out.println("2. Push/Pull/Legs Split");
+                System.out.println("3. Full Body Split");
+                System.out.println("Enter your choice (1-3): ");
+                int trainingSplitchoice = input.nextInt();
+                input.nextLine();
+                switch(trainingSplitchoice) {
+                    case 1:
+                        prog.setTrainingSplit("Upper/Lower Split");
+                        break;
+                    case 2:
+                        prog.setTrainingSplit("Push/Pull/Legs Split");
+                        break;
+                    case 3:
+                        prog.setTrainingSplit("Full Body Split");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                }
+                break;
+            case 5:
+                System.out.println("Enter your new training volume: ");
+                System.out.println("1. Low volume (3-6 sets per muscle group)");
+                System.out.println("2. Moderate volume (7-9 sets per muscle group)");
+                System.out.println("3. High volume (10+ sets per muscle group)");
+                System.out.println("Enter your choice (1-3): ");
+                int trainingVolumechoice = input.nextInt();
+                input.nextLine();
+                switch(trainingVolumechoice) {
+                    case 1:
+                        prog.setTrainingVolume("Low volume (3-6 sets per muscle group)");
+                        break;
+                    case 2:
+                        prog.setTrainingVolume("Moderate volume (7-9 sets per muscle group)");
+                        break;
+                    case 3:
+                        prog.setTrainingVolume("High volume (10+ sets per muscle group)");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                }
+                break;
+            case 6:
+                System.out.println("Exiting training info...");
+                return;
+            default:
+                System.out.println("Please enter a valid choice");
+        }
     }
 
     public void updateProfile(Profile user){

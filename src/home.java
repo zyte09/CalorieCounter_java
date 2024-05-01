@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 public class home {
     private final mealTracker mealTracker;
 
@@ -5,6 +6,7 @@ public class home {
         this.mealTracker = mealTracker;
     }
     public void displayHome(Profile user) {
+        DecimalFormat df = new DecimalFormat("#.##");
         System.out.println("============ Home ============");
         System.out.println("Calories");
         double totalCalories = mealTracker.getTotalCalForMeals("Breakfast")
@@ -12,10 +14,10 @@ public class home {
                 + mealTracker.getTotalCalForMeals("Dinner")
                 + mealTracker.getTotalCalForMeals("Snacks");
         double remainingCalories = user.calcuTDEE() - totalCalories;
-        System.out.println("Goal = " + user.calcuTDEE() + " for today");
-        System.out.println("Food = " + totalCalories);
+        System.out.println("Goal = " + df.format(user.calcuTDEE()) + " for today");
+        System.out.println("Food = " + df.format(totalCalories));
         System.out.println("Remaining = Goal - Food");
-        System.out.println("Remaining = " + remainingCalories);
+        System.out.println("Remaining = " + df.format(remainingCalories));
         displayMealInfo();
         displayWeightProgress(user);
     }

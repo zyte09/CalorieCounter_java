@@ -160,7 +160,7 @@ public class Main {
         mealTracker myMealTracker = new mealTracker();
         home home = new home(myMealTracker);
         program program = new program();
-        more more = new more(myMealTracker);
+        more more = new more(myMealTracker, program);
         //menu
         while (true) {
             displayMenu();
