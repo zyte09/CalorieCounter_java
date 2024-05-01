@@ -189,7 +189,7 @@ public class Main {
                     input.close();
                     return;
                 default:
-                    System.out.println("Please enter a valid choice");
+                    System.out.println("Please enter a valid choice.");
             }
         }
     }
