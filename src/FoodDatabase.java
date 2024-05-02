@@ -25,5 +25,9 @@ public class FoodDatabase {
         addMealInfo("White Rice", whiteRice);
         MealInfo brownRice = new MealInfo(123, 25.58, 0.97, 2.74);
         addMealInfo("Brown Rice", brownRice);
+        MealInfo rawChickenBreast = new MealInfo(120, 0, 2.62, 22.5);
+        addMealInfo("Chicken Breast Raw", rawChickenBreast);
+        MealInfo rawChickenThigh = new MealInfo(222, 0.25, 16.61, 16.62);
+        addMealInfo("Chicken Thigh Raw", rawChickenThigh);
     }
 }
