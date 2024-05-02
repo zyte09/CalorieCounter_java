@@ -40,7 +40,7 @@ public class more {
                         System.out.println("Exiting more menu...");
                         break;
                     default:
-                        System.out.println("Please enter a valid choice");
+                        System.out.print("Please enter a valid choice (1-5): ");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
@@ -63,7 +63,7 @@ public class more {
             if (input.hasNextInt()) {
                 option = input.nextInt();
                 if (option < 1 || option > 5) {
-                    System.out.println("Please enter a valid choice");
+                    System.out.print("Please enter a valid choice (1-5): ");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
@@ -416,11 +416,12 @@ public class more {
                 System.out.println("4. Update Height");
                 System.out.println("5. Exit");
                 System.out.println("========================================");
-                System.out.println("Please select an option (1-5): ");
+                System.out.print("Please select an option (1-5): ");
                 int updateOption = 0;
                 while (updateOption < 1 || updateOption > 5) {
                     if (input.hasNextInt()) {
                         updateOption = input.nextInt();
+                        input.nextLine();
                         if (updateOption < 1 || updateOption > 5) {
                             System.out.println("Please enter a valid choice");
                         }

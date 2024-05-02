@@ -130,6 +130,10 @@ public class mealTracker {
 
         System.out.println("============ Delete a meal ============");
         System.out.print("Enter the number of the meal to delete from " + mealName + ": ");
+        while (!input.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a number.");
+            input.next();
+        }
         int mealNumber = input.nextInt() - 1; // to start at 0
         if (mealNumber >= 0 && mealNumber < mealKeys.size()) {
             String key = mealKeys.get(mealNumber);
@@ -158,6 +162,10 @@ public class mealTracker {
         }
         System.out.println("============ Update a meal ============");
         System.out.print("Enter the number of the meal to update from " + mealName + ":");
+        while (!input.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a number.");
+            input.next();
+        }
         int mealNumber = input.nextInt() - 1; // -1 to get the correct index and to start at 0
         if (mealNumber >= 0 && mealNumber < mealKeys.size()){
             String oldkey = mealKeys.get(mealNumber);

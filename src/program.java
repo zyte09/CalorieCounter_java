@@ -84,11 +84,18 @@ public class program {
             System.out.println("3. Advanced (More than 1 year of experience)");
             System.out.println("=================================================");
             System.out.print("Enter your choice (1-3): ");
-            while (!input.hasNextInt()) { //para di mag error kapag hindi int ang input
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
+            int fitnessLevelchoice = 0;
+            while (fitnessLevelchoice < 1 || fitnessLevelchoice > 3) {
+                if (input.hasNextInt()) {
+                    fitnessLevelchoice = input.nextInt();
+                    if (fitnessLevelchoice < 1 || fitnessLevelchoice > 3) {
+                        System.out.print("Invalid choice. Please enter a number between (1-3).");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();// discard the invalid input
+                }
             }
-            int fitnessLevelchoice = input.nextInt();
             switch (fitnessLevelchoice) {
                 case 1:
                     fitnessLevel = "Beginner (Less than 6 months of experience)";
@@ -99,8 +106,6 @@ public class program {
                 case 3:
                     fitnessLevel = "Advanced (More than 1 year of experience)";
                     break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 3.");
             }
         }
 
@@ -112,12 +117,18 @@ public class program {
             System.out.println("3. Endurance");
             System.out.println("=================================================");
             System.out.print("Enter your choice (1-3): ");
-            while (!input.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
+            int trainingGoalchoice = 0;
+            while (trainingGoalchoice < 1 || trainingGoalchoice > 3) {
+                if (input.hasNextInt()) {
+                    trainingGoalchoice = input.nextInt();
+                    if (trainingGoalchoice < 1 || trainingGoalchoice > 3) {
+                        System.out.print("Invalid choice. Please enter a number between (1-3).");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
             }
-            int trainingGoalchoice = input.nextInt();
-            input.nextLine();
             switch(trainingGoalchoice) {
                 case 1:
                     trainingGoal = "Strength";
@@ -128,8 +139,6 @@ public class program {
                 case 3:
                     trainingGoal = "Endurance";
                     break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 3.");
             }
         }
 
@@ -143,12 +152,18 @@ public class program {
             System.out.println("5. 7 days per week");
             System.out.println("=================================================");
             System.out.print("Enter your choice (1-5): ");
-            while (!input.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
+            int trainingFrequencychoice = 0;
+            while (trainingFrequencychoice < 1 || trainingFrequencychoice > 5) {
+                if (input.hasNextInt()) {
+                    trainingFrequencychoice = input.nextInt();
+                    if (trainingFrequencychoice < 1 || trainingFrequencychoice > 5) {
+                        System.out.print("Invalid choice. Please enter a number between (1-5).");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
             }
-            int trainingFrequencychoice = input.nextInt();
-            input.nextLine();
             switch(trainingFrequencychoice) {
                 case 1:
                     trainingFrequency = "3 days per week";
@@ -165,8 +180,6 @@ public class program {
                 case 5:
                     trainingFrequency = "7 days per week";
                     break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 5.");
             }
         }
 
@@ -177,13 +190,19 @@ public class program {
             System.out.println("2. Upper/Lower body split");
             System.out.println("3. Push/Pull/Legs split");
             System.out.println("=========================================");
-            System.out.println("Enter your choice (1-3): ");
-            while (!input.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
+            System.out.print("Enter your choice (1-3): ");
+            int trainingSplitchoice = 0;
+            while (trainingSplitchoice < 1 || trainingSplitchoice > 3) {
+                if (input.hasNextInt()) {
+                    trainingSplitchoice = input.nextInt();
+                    if (trainingSplitchoice < 1 || trainingSplitchoice > 3) {
+                        System.out.print("Invalid choice. Please enter a number between (1-3).");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
             }
-            int trainingSplitchoice = input.nextInt();
-            input.nextLine();
             switch(trainingSplitchoice) {
                 case 1:
                     trainingSplit = "Full body workout";
@@ -194,8 +213,6 @@ public class program {
                 case 3:
                     trainingSplit = "Push/Pull/Legs split";
                     break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 3.");
             }
         }
 
@@ -207,12 +224,18 @@ public class program {
             System.out.println("3. High volume (10+ sets per muscle group)");
             System.out.println("==================================================");
             System.out.print("Enter your choice (1-3): ");
-            while (!input.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
-                input.next();
+            int trainingVolumechoice = 0;
+            while (trainingVolumechoice < 1 || trainingVolumechoice > 3) {
+                if (input.hasNextInt()) {
+                    trainingVolumechoice = input.nextInt();
+                    if (trainingVolumechoice < 1 || trainingVolumechoice > 3) {
+                        System.out.print("Invalid choice. Please enter a number between (1-3).");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    input.next();
+                }
             }
-            int trainingVolumechoice = input.nextInt();
-            input.nextLine();
             switch(trainingVolumechoice) {
                 case 1:
                     trainingVolume = "Low volume (3-6 sets per muscle group)";
@@ -223,8 +246,6 @@ public class program {
                 case 3:
                     trainingVolume = "High volume (10+ sets per muscle group)";
                     break;
-                default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 3.");
             }
         }
 
