@@ -6,8 +6,8 @@ public class program {
     private String fitnessLevel = "", trainingGoal = "", trainingFrequency = "", trainingSplit = "", trainingVolume = ""; //para di na need mag input ulit
 
     public void displayProgram() {
-        int choice = 0;
-        while (choice != 4) {
+        int choice;
+        while (true) {
             System.out.println("\n============ Workout Program ============");
             System.out.println("1. View workout program");
             System.out.println("2. View Training Info");
