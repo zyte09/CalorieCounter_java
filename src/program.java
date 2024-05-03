@@ -31,7 +31,7 @@ public class program {
                         System.out.println("Exiting Workout Program...");
                         return;
                     default:
-                        System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                        System.out.println("Invalid choice. Please enter a number between 1 and 4.");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
@@ -257,6 +257,36 @@ public class program {
         System.out.println("Training Volume: " + trainingVolume);
     }
 
+    public void estimate1RM() { //epley formula for 1RM estimation
+        System.out.println("\n============= 1RM Estimator =============");
+        System.out.println("Estimate your 1 rep max");
+        System.out.print("Enter the weight lifted (kg): ");
+        while (!input.hasNextInt()){
+            System.out.println("Invalid input. Please enter a number.");
+            input.next();
+        }
+        int weightLifted = input.nextInt();
+        System.out.print("Enter the number of repetitions: ");
+        while (!input.hasNextInt()){
+            System.out.println("Invalid input. Please enter a number.");
+            input.next();
+        }
+        int reps = input.nextInt();
+        while (reps > 30) {
+            System.out.println("Please enter a valid number of repetitions (less than 30): ");
+            reps = input.nextInt();
+        }
+        input.nextLine();
+        DecimalFormat df = new DecimalFormat("#.##");
+        double oneRepMax = calculateOneRepMax(weightLifted, reps);
+        System.out.println("Your estimated 1RM is: " + df.format(oneRepMax) + " kg");
+        System.out.println("=========================================");
+    }
+
+    public double calculateOneRepMax(int weight, int reps) {
+        return weight * (1 + (double) reps / 30);
+    }
+
     //getter and setter for viewTrainingInfo
     public String getFitnessLevel() {
         return fitnessLevel;
@@ -288,35 +318,4 @@ public class program {
     public void setTrainingVolume(String trainingVolume) {
         this.trainingVolume = trainingVolume;
     }
-
-    public void estimate1RM() {
-        System.out.println("\n============= 1RM Estimator =============");
-        System.out.println("Estimate your 1 rep max");
-        System.out.print("Enter the weight lifted (kg): ");
-        while (!input.hasNextInt()){
-            System.out.println("Invalid input. Please enter a number.");
-            input.next();
-        }
-        int weightLifted = input.nextInt();
-        System.out.print("Enter the number of repetitions: ");
-        while (!input.hasNextInt()){
-            System.out.println("Invalid input. Please enter a number.");
-            input.next();
-        }
-        int reps = input.nextInt();
-        while (reps > 30) {
-            System.out.println("Please enter a valid number of repetitions (less than 30): ");
-            reps = input.nextInt();
-        }
-        input.nextLine();
-        DecimalFormat df = new DecimalFormat("#.##");
-        double oneRepMax = calculateOneRepMax(weightLifted, reps);
-        System.out.println("Your estimated 1RM is: " + df.format(oneRepMax) + " kg");
-        System.out.println("=========================================");
-    }
-
-    public double calculateOneRepMax(int weight, int reps) {
-        return weight * (1 + (double) reps / 30);
-    }
-
 }
